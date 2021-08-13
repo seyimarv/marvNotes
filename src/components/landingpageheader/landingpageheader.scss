@@ -1,0 +1,153 @@
+@import '../../assets/scss/mixins';
+
+
+.main-header {
+    margin-top: -8px;
+    width: 100%;
+    height: 5.5rem;
+    display: flex;
+
+    @include respond(phone) {
+        margin-top: 0px;
+        height: 3rem;
+    }
+
+    nav {
+        height: 100%;
+        width: 100%;
+        align-items: center;
+        justify-content: space-between;
+        z-index: 1;
+    }
+
+    ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+    }
+
+    .main-header_logo {
+        width: 40%;
+        padding: 0 18px;
+
+        @include respond(phone) {
+            width: 20%;
+            padding: 0px 10px;
+        }
+
+        h6 {
+            font-style: normal;
+            font-weight: normal;
+            font-size: 18px;
+            line-height: 21px;
+
+            color: #FFFFFF;
+        }
+    }
+
+    .main_header_item {
+        width: 10%;
+        padding: 0;
+
+        a {
+            font-style: normal;
+            font-weight: normal;
+            font-size: 14px;
+            line-height: 16px;
+
+            /* Whitish */
+
+            color: #FFFFFF;
+        }
+
+        @include respond(phone) {
+            display: none;
+        }
+    }
+
+    .main_header_last-item {
+        position: absolute;
+        width: 20%;
+        right: 4px;
+
+        a {
+            font-style: normal;
+            font-weight: normal;
+            font-size: 14px;
+            line-height: 16px;
+
+            /* Whitish */
+
+            color: #FFFFFF;
+
+            span {
+                font-size: 18px;
+            }
+        }
+
+        @include respond(phone) {
+            display: none;
+        }
+
+    }
+}
+
+.mobile-nav { 
+    height: 0rem; 
+    opacity: 0;
+    transition: height 0.15s ease-out;
+    ul {
+        list-style: none;
+        margin: 3px 6px;
+        padding: 0px 7px;
+
+        li {
+            padding: 5px 0px;
+          
+
+            a {
+                font-style: normal;
+                font-weight: normal;
+                font-size: 16px;
+                line-height: 16px;
+
+                /* Whitish */
+
+                color: #FFFFFF !important;
+            }
+        }
+    }
+    @media (min-width: 44.5em) {
+        display: none;
+
+    }
+}
+
+.mobile-nav_open {
+    height: 7rem;
+    opacity: 1;
+    transition: height opacity 0.8s ease-in;
+    
+
+    
+}
+
+.mobile-nav_icon {
+    position: absolute;
+    right: 1rem;
+    top: 15px;
+
+    @media (min-width: 44.5em) {
+        display: none;
+
+    }
+}
+
+
+.mobile-nav_button {
+        @media (min-width: 44.5em) {
+            display: none;
+    
+        }
+}

@@ -1,0 +1,33 @@
+.inputgroup {
+    position: relative;
+    max-width: 385px;
+
+    .formInput {
+        background: #FFFFFF;
+        border: 1px solid #044143;
+        box-sizing: border-box;
+        width: 100%;
+        padding: 3px 10px;
+        margin: 5px 0px;
+
+        &.inputError {
+            border: 1px solid red;
+
+        }
+
+        &:focus {
+            outline: none;
+            border: 2px solid #027478;
+        }
+
+        input::placeholder {
+            font-style: normal;
+            font-weight: normal;
+            font-size: 14px;
+            line-height: 16px;
+            color: #000000;
+        }
+    }
+
+
+}
