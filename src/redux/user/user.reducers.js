@@ -6,8 +6,9 @@ const INITIAL_STATE = {
         isAuth: false,
         token: null,
         userName: null,
-        userId: null
-    }
+        userId: null,
+        isLoading: false
+    },
 }
 
 const userReducer = (state = INITIAL_STATE, action) => {

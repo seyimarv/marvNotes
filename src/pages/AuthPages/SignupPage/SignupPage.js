@@ -25,8 +25,8 @@ const SignupPage = () => {
                     const errors = {};
                     if (!values.name) {
                         errors.name = 'name is required'
-                    } else if (values.name.length < 5) {
-                        errors.name = 'name should have at least 5 characters'
+                    } else if (values.name.length < 5 || values.name.length > 29) {
+                        errors.name = 'name should have at least 5 characters, and less than 29 characters'
                     } else if (!values.email) {
                         errors.email = 'Email address is required';
                     } else if (

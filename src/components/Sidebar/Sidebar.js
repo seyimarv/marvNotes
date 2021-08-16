@@ -1,11 +1,54 @@
 import React from 'react'
+import HomeIcon from '@material-ui/icons/Home';
+import { useDispatch, useSelector } from 'react-redux'
+import './Sidebar.scss'
+import { Button } from 'react-bootstrap'
+import Sidebaritem from './Sidebaritems'
+import { logout } from '../../services/auth'
+import NotesIcon from '@material-ui/icons/Notes';
+import LibraryBooksIcon from '@material-ui/icons/LibraryBooks';
+import MenuBookIcon from '@material-ui/icons/MenuBook';
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
+import AddIcon from '@material-ui/icons/Add';
+import CopyrightIcon from '@material-ui/icons/Copyright';
 
-
-
-const Sidebar = ()  => {
+const Sidebar = ({path}) => {
+    const currentUser = useSelector((state) => state.user.currentUser)
+    const dispatch = useDispatch()
     return (
-        <div>
-            
+        <div className="sidebar">
+            <h6>{currentUser.userName}</h6>
+            <Button className="sidebar_button mb-4">
+                <span style={{
+                    padding: '0px 5px'
+                }}>
+                    <AddIcon />
+                </span>
+                New
+            </Button>
+            <Sidebaritem Icon={HomeIcon}   active={path} text="Home"  />
+            <Sidebaritem Icon={LibraryBooksIcon} active={path} text="All Notes" />
+            <Sidebaritem Icon={MenuBookIcon} icon='' active={path} text="My Notes" />
+            <Button className="sidebar-logout" onClick={() => {
+                logout(dispatch)
+            }} style={{
+                color: "white"
+            }}>
+                <span style={{
+                    padding: '0px 5px'
+                }}>
+                    <ExitToAppIcon />
+                </span>
+                Log out</Button>
+
+            <div className="sidebar_footer d-flex">
+                <span style={{
+                    padding: '0px 5px'
+                }}>
+                    <CopyrightIcon />
+                </span>
+                <p>Seyimarv</p>
+            </div>
         </div>
     )
 }

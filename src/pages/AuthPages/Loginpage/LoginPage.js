@@ -9,6 +9,8 @@ import { loginUser } from '../../../services/auth';
 import { connect, useDispatch } from "react-redux";
 import { setCurrentUser } from '../../../redux/user/user.actions';
 
+import { Link } from 'react-router-dom';
+
 const LoginPage = () => {
      const dispatch = useDispatch()
     return (
@@ -104,12 +106,12 @@ const LoginPage = () => {
                 </section>
                 <section className="login-page_secondsection">
                     <p>
-                        Forgot Password ?
-                        <a href="dsd">Reset here</a>
+                        Forgot Password?
+                        <a href="dsd"> - Reset here</a>
                     </p>
 
                     <p>
-                        I am new here, <a href="efe">Create new account</a>
+                        I am new here, <Link to="/Signup">Create new account</Link>
                     </p>
                 </section>
             </div>

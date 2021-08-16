@@ -17,7 +17,7 @@ export const loginUser = async (values, dispatch) => {
         console.log(response)
         if (response.status === 401) {
             throw new Error(
-                "Login failed, checak your details and try again"
+                "Login failed, check your details and try again"
             );
         }
         if (response.status !== 200 && response.status !== 201) {
@@ -82,11 +82,13 @@ export const signUpUser = async (values) => {
 
 export const logout = (dispatch) => {
     localStorage.removeItem('user')
+    localStorage.removeItem("expiryDate")
     const user = {
         isAuth: false, 
         token: null, 
         userId: null,
-        userName: null
+        userName: null,
+        isLoading: false
     }
     dispatch(setCurrentUser(user))
 }

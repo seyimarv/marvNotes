@@ -4,6 +4,8 @@ import NavIcon from '../../assets/icons8-menu.svg'
 import { Button } from 'react-bootstrap'
 import { useState } from 'react'
 import Logo from '../../assets/MarvnotesLogo.svg'
+import { Link } from 'react-router-dom'
+
 
 const Landingpageheader = () => {
     const [mobileNav, setMobileNav] = useState(false)
@@ -28,10 +30,10 @@ const Landingpageheader = () => {
                             <a>Home</a>
                         </li>
                         <li className="main_header_item">
-                            <a >Signup</a>
+                            <Link to='/Signup'>Signup</Link>
                         </li>
                         <li className="main_header_item">
-                            <a >Login</a>
+                            <Link to='/Login'>Login</Link>
                         </li>
                         <li className="main_header_last-item">
                             <a>
@@ -61,7 +63,7 @@ const Landingpageheader = () => {
                                     <a>Home</a>
                                 </li>
                                 <li>
-                                    <a >Log In</a>
+                                    <Link to='/login'>Log In</Link>
                                 </li>
                                 <li className="mobile-nav_last-item">
                                     <a>

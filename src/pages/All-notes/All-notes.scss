@@ -1,0 +1,15 @@
+body {
+    height: 100%;
+    overflow-x: hidden;
+
+}
+
+.all-notes_container {
+    margin: 0px !important;
+    background-color: rgba(234, 234, 234, 0.8);
+
+    .all-notes_colummn {
+        margin: 0px !important;
+        padding: 0px !important;
+    }
+}

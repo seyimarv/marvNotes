@@ -1,0 +1,54 @@
+.write-note {
+    padding: 40px 10px;
+    height: 100%;
+    border-left: 1px solid #b3afaf80;
+    background-color: white;
+    
+     .write-note_errormessage {
+         color: red;
+         font-size: 12px;
+         height: 5px;
+         padding: 0px 5px;
+     }
+     .write-note_title::placeholder { 
+         color: rgb(0, 0, 0);
+         opacity: 1;
+         font-size: 25px;
+         letter-spacing: 1px;
+         height: auto;
+       }
+    .write-note_title {
+        width: 100%;
+        height: 100%;
+        font-size: 25px;
+        margin: 10px 0px;
+        outline: none;
+        border: none;
+        resize: none;
+        overflow: hidden;
+
+    }
+
+    .write-note_content {
+        width: 100%;
+        // height: 69vh; 
+        box-sizing: border-box;
+        outline: none;
+        border: none;
+        resize: none;
+        overflow: hidden;
+    }
+    .write-note_content::placeholder {
+       font-size: 18px;
+       opacity: 0.5;
+    }
+
+    .write-note_button {
+        position: absolute;
+        bottom: 20px;
+        right: 20px;
+        background:  #424CA0 !important;
+        border: #424CA0 !important ;
+        padding: 5px 30px !important;
+    }
+}
