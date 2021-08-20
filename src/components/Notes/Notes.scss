@@ -25,6 +25,7 @@ body {
 
         }
     }
+
     .note_card_column {
         margin: 0px !important;
         padding: 4px !important;
@@ -36,23 +37,62 @@ body {
         width: 100%;
         margin: 5px 0px;
         padding: 10px 10px 0px 10px;
-      
+        word-wrap: break-word;
+
+
         .note_card_title {
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 2;
+            overflow: hidden;
             font-size: 20px;
             font-weight: bold;
-            display: block;
-            height: 22px;
+
         }
 
         .note_card_author {
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 1;
+            overflow: hidden;
             font-size: 12px;
             color: rgb(144, 143, 143);
         }
 
+
+
+        .note-footer {
+            display: flex;
+            justify-content: space-between;
+        }
+        .note-like_icon {
+            font-size: 18px !important;
+            color: rgb(137, 132, 132) !important;
+        }
+
+       
+
+        .note_liked {
+            color: rgb(255, 0, 123) !important
+        }
+
+        .note-likes {
+            padding: 2px 10px;
+            color: rgb(137, 132, 132) !important;
+        }
+
+        .note-delete_icon {
+            font-size: 18px !important;
+            color: rgb(137, 132, 132) !important;
+        }
+
         p {
-            //    background-color: whitesmoke;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 2;
+            overflow: hidden;
             margin-top: 5px;
-            border-radius: 10px;
+
             padding: 5px 10px;
         }
 

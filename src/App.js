@@ -22,10 +22,14 @@ const App = () => {
     }, milliseconds)
   }
   useEffect(() => {
-   
+   let fetchUser = true
+   let fetchedUser
     const user = localStorage.getItem('user')
     const expiryDate = localStorage.getItem('expiryDate')
-    const fetchedUser = JSON.parse(user)
+    if(fetchUser)  {
+      fetchedUser = JSON.parse(user)
+    }
+  
     dispatch(setCurrentUser({isLoading: true, ...fetchedUser}))
 
     if (!fetchedUser || !expiryDate) {
@@ -42,6 +46,10 @@ const App = () => {
     dispatch(setCurrentUser({ isAuth: true, isLoading: false, ...fetchedUser }))
     
     autoLogout(remainingMilliseconds);
+    return () => {
+      fetchUser = false
+      dispatch(setCurrentUser({isAuth: false, isLoading: false}))
+    }
   }, [])
 
   return (

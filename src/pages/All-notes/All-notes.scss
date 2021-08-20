@@ -5,8 +5,10 @@ body {
 }
 
 .all-notes_container {
+    height: 100vh;
     margin: 0px !important;
     background-color: rgba(234, 234, 234, 0.8);
+    padding-bottom: 100px;
 
     .all-notes_colummn {
         margin: 0px !important;

@@ -5,36 +5,38 @@ import './writenote.scss'
 import { Formik } from 'formik';
 import { Button } from 'react-bootstrap'
 import { TextareaAutosize } from "@material-ui/core";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addNote } from "../../services/notes";
 
 
 const Writenote = () => {
     const userToken = useSelector((state) => state.user.currentUser.token)
+    const dispatch = useDispatch()
     return (
         <div className="write-note">
+
             <Formik
                 initialValues={{ title: '', content: '' }}
                 validate={values => {
                     const errors = {};
                     if (!values.title) {
-                       console.log('')
+                        console.log('')
 
-                    } 
-                    
+                    }
+
                     return errors;
                 }}
                 onSubmit={(values, { setSubmitting }) => {
                     setTimeout(async () => {
-                        if(!values.title) {
+                        if (!values.title) {
                             values.title = "No title"
                         }
-                        if(!values.content) {
+                        if (!values.content) {
                             values.content = ""
                         }
-                        await addNote(values,userToken)
+                        await addNote(values, userToken, dispatch)
                         setSubmitting(false);
-                       
+
                     }, 100);
                 }}
             >
@@ -48,8 +50,14 @@ const Writenote = () => {
                     isSubmitting,
                     /* and other goodies */
                 }) => (
+
                     <form onSubmit={handleSubmit}>
 
+                        <div style={{
+                            overflowY: 'scroll',
+                            height: '80vh',
+                           
+                        }}>
                         <TextareaAutosize className='write-note_title'
                             placeholder="Title"
                             type="text"
@@ -59,7 +67,7 @@ const Writenote = () => {
                             value={values.title}
                             error={errors.title}
                             maxLength="250"
-                      
+
                         />
                         {
                             errors.title ?
@@ -85,14 +93,14 @@ const Writenote = () => {
                                 </p> : null
                         }
 
-                        <div>
-                            <Button className="write-note_button" type='submit' disabled={isSubmitting}>
-                                Post
-                            </Button>
                         </div>
+                        <Button className="write-note_button" type='submit' disabled={isSubmitting}>
+                            Post
+                        </Button>
                     </form>
                 )}
             </Formik>
+
         </div>
 
     )
