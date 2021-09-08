@@ -4,12 +4,12 @@ import rootReducer  from "./Rootreducer";
 
 import logger from "redux-logger";
 
-import persistStore from "redux-persist/es/persistStore";
+import {persistStore }from "redux-persist";
 
 const enhancedMiddleware = applyMiddleware(logger)
 
 const composedEnhancers = compose(enhancedMiddleware)
 
-const store = createStore(rootReducer, undefined,  composedEnhancers )
+export const store = createStore(rootReducer,  composedEnhancers )
+export const persistor = persistStore(store)
 
-export default store

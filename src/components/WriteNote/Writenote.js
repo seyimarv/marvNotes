@@ -6,17 +6,20 @@ import { Formik } from 'formik';
 import { Button } from 'react-bootstrap'
 import { TextareaAutosize } from "@material-ui/core";
 import { useDispatch, useSelector } from "react-redux";
-import { addNote } from "../../services/notes";
+import { addNote, updateNote } from "../../services/notes";
 
 
-const Writenote = () => {
+const Writenote = ({ privacy, initialTitle, initialContent, id, editing }) => {
     const userToken = useSelector((state) => state.user.currentUser.token)
     const dispatch = useDispatch()
+    const writeNoteState = useSelector((state => state.notes.writeNote))
+    const editNoteState = useSelector((state => state.notes.editNote))
+
     return (
-        <div className="write-note">
+        <div className={`write-note ${writeNoteState || editNoteState.editingNote? 'displayWritenoteMobile' : ''} `}>
 
             <Formik
-                initialValues={{ title: '', content: '' }}
+                initialValues={{ title: initialTitle, content: initialContent , privacy: privacy }}
                 validate={values => {
                     const errors = {};
                     if (!values.title) {
@@ -27,17 +30,34 @@ const Writenote = () => {
                     return errors;
                 }}
                 onSubmit={(values, { setSubmitting }) => {
-                    setTimeout(async () => {
+                    if(editNoteState.editingNote) {
+                        setTimeout(async () => {
                         if (!values.title) {
                             values.title = "No title"
                         }
                         if (!values.content) {
                             values.content = ""
                         }
+                        console.log(values)
+                        await updateNote(values, userToken, id, dispatch)
+                        setSubmitting(false);
+                        
+                    }, 100);
+                    } else {
+                        setTimeout(async () => {
+                        if (!values.title) {
+                            values.title = "No title"
+                        }
+                        if (!values.content) {
+                            values.content = ""
+                        }
+                        console.log(values)
                         await addNote(values, userToken, dispatch)
                         setSubmitting(false);
 
                     }, 100);
+                    }
+                  
                 }}
             >
                 {({
@@ -52,46 +72,63 @@ const Writenote = () => {
                 }) => (
 
                     <form onSubmit={handleSubmit}>
+                        <div className="write-note_privacy">
+                            <label htmlFor="privacy">Choose who can see this note</label>
+                            {
+                                privacy ? <select name="privacy"
+                                    onChange={handleChange}
+                                    onBlur={handleBlur}
+                                    value={values.privacy}
+                                    error={errors.privacy}>
+                                     <option value="false">Everyone</option>
+                                    <option value="true">Only you</option>
+                                   
+                                </select> : <select name="privacy"
+                                    onChange={handleChange}
+                                    onBlur={handleBlur}
+                                    value={values.privacy}
+                                    error={errors.privacy}>
+                                    <option value="true">Only you</option>
+                                    <option value="false">Everyone</option>
+                                </select>
+                            }
 
-                        <div style={{
-                            overflowY: 'scroll',
-                            height: '80vh',
-                           
-                        }}>
-                        <TextareaAutosize className='write-note_title'
-                            placeholder="Title"
-                            type="text"
-                            name="title"
-                            onChange={handleChange}
-                            onBlur={handleBlur}
-                            value={values.title}
-                            error={errors.title}
-                            maxLength="250"
+                        </div>
+                        <div className='write-note_con'>
+                            <TextareaAutosize className='write-note_title'
+                                placeholder="Title"
+                                type="text"
+                                name="title"
+                                onChange={handleChange}
+                                onBlur={handleBlur}
+                                value={values.title}
+                                error={errors.title}
+                                maxLength="250"
 
-                        />
-                        {
-                            errors.title ?
-                                <p className="write-note_errormessage">
-                                    {errors.title && touched.title && errors.title}
-                                </p> : null
-                        }
+                            />
+                            {
+                                errors.title ?
+                                    <p className="write-note_errormessage">
+                                        {errors.title && touched.title && errors.title}
+                                    </p> : null
+                            }
 
-                        <TextareaAutosize
-                            className="write-note_content"
-                            placeholder='Write the content of your note here.'
-                            type="content"
-                            name="content"
-                            onChange={handleChange}
-                            onBlur={handleBlur}
-                            value={values.content}
-                            error={errors.content}
-                        />
-                        {
-                            errors.content ?
-                                <p className="write-note_errormessage">
-                                    {errors.title && touched.title && errors.title}
-                                </p> : null
-                        }
+                            <TextareaAutosize
+                                className="write-note_content"
+                                placeholder='Write the content of your note here.'
+                                type="content"
+                                name="content"
+                                onChange={handleChange}
+                                onBlur={handleBlur}
+                                value={values.content}
+                                error={errors.content}
+                            />
+                            {
+                                errors.content ?
+                                    <p className="write-note_errormessage">
+                                        {errors.title && touched.title && errors.title}
+                                    </p> : null
+                            }
 
                         </div>
                         <Button className="write-note_button" type='submit' disabled={isSubmitting}>

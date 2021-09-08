@@ -14,3 +14,12 @@ export const createNote = note => ({
     type: noteActionTyoes.CREATE_NOTE,
     payload: note
 })
+
+export const writeNote = () => ({
+    type: noteActionTyoes.WRITE_NOTE
+})
+
+export const editNote = (note) => ({
+    type: noteActionTyoes.EDIT_NOTE,
+    payload: note
+})

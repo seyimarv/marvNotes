@@ -9,7 +9,7 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { logout } from './services/auth';
 import { setCurrentUser} from './redux/user/user.actions';
-import Allnotes from './pages/All-notes/All-notes';
+import AllnotesCon from './pages/All-notes/AllnotesContainer';
 import ProtectedRoute from './ProtectedRoute';
 import { Switch, Route, Redirect } from 'react-router-dom';
 
@@ -44,7 +44,6 @@ const App = () => {
     }
     const remainingMilliseconds = new Date(expiryDate).getTime() - new Date().getTime();
     dispatch(setCurrentUser({ isAuth: true, isLoading: false, ...fetchedUser }))
-    
     autoLogout(remainingMilliseconds);
     return () => {
       fetchUser = false
@@ -78,7 +77,7 @@ const App = () => {
              <LoginPage/>
           )
         } />
-    <ProtectedRoute path='/All Notes' component={Allnotes} currentUser={currentUser}/>
+    <ProtectedRoute path='/All Notes' component={AllnotesCon} currentUser={currentUser}/>
       
     
   </Switch>

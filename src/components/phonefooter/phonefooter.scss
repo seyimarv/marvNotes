@@ -1,0 +1,42 @@
+.phone-footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color:rgb(251, 247, 247);
+    z-index: 1;
+    color: white;
+    text-align: center;
+    @media screen and (min-width: 56.25em) {
+        display: none;
+      }
+
+      .phone-footer-contents {
+          display: flex;
+          justify-content: space-between;
+          padding: 10px 10px;
+      }
+
+      .phone-footer-icon {
+          color: black !important;
+          font-size: 28px !important;
+          margin: 0px 5px;
+      }
+      .phone-footer-search-icon {
+          position: absolute;
+          right: 10px;
+          font-size: 30px !important;
+      }
+
+      .phone-footer_button {
+          position: absolute;
+          bottom: 30px;
+          left: 0;
+          right: 0;
+          margin: auto;
+          border-radius: 20px;
+          font-size: 18px;
+          padding: 5px 20px;
+          background:  #424CA0 !important;
+          border: 1px solid #424CA0 !important;
+      }
+}

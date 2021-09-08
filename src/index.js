@@ -6,7 +6,8 @@ import 'bootstrap/dist/css/bootstrap.css';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import store from './redux/store';
+import  {persistor, store} from './redux/store';
+import { PersistGate } from "redux-persist/integration/react"
 
 ReactDOM.render(
   <React.StrictMode>

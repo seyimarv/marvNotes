@@ -1,0 +1,37 @@
+@import '../../assets/scss/mixins';
+
+.notedropdown_options {
+    list-style: none;
+    text-align: left;
+    padding: 2px 10px;
+    border: 1px solid rgba(195, 194, 194, 0.5);
+    width: 50%;
+    position: absolute;
+    right: 0px;
+    border-radius: 5px;
+    background-color: white;
+    box-shadow: 2px 10px 5px 0px rgba(233,227,227,1);
+    -webkit-box-shadow: 2px 10px 5px 0px rgba(233,227,227,1);
+    -moz-box-shadow: 2px 10px 5px 0px rgba(233,227,227,1);
+    
+    @include respond(phone) {
+        width: 100%;
+        padding: 2px 0px;
+    }
+
+    li {
+        margin: 5px 0px;
+        padding: 1px 5px;
+        border-radius: 2px;
+        font-size: 14px;
+        background-color: white;
+        transition: 0.2s;
+        color: rgba(0, 0, 0, 0.8);
+        
+    }
+     li:hover {
+        background-color: rgb(12, 12, 179);
+        cursor: pointer;
+        color: white;
+    } 
+}

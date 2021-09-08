@@ -1,7 +1,7 @@
-import { createNote, deleteCurrentNote } from "../redux/notes/notes.actions";
+import { createNote, deleteCurrentNote, editNote } from "../redux/notes/notes.actions";
 
 
-export const addNote = async (Values, token, dispatch) => {
+export const addNote = async (Values, token) => {
    try {
        const response = await fetch('http://localhost:8081/note/note', {
            method: 'POST',
@@ -11,7 +11,8 @@ export const addNote = async (Values, token, dispatch) => {
            },
            body: JSON.stringify({
                title: Values.title,
-               content: Values.content
+               content: Values.content,
+               privacy: Values.privacy
            })
        })
        console.log(response)
@@ -28,19 +29,55 @@ export const addNote = async (Values, token, dispatch) => {
     console.log(noteData)
     Values.title = ''
     Values.content = ''
-    dispatch(createNote(noteData.note))
    } catch(err) {
        console.log(err)
    }
 }
 
-export const fetchNotes = async (token) => {
+export const updateNote = async (Values, token, id, dispatch) => {
+    try {
+        const response = await fetch(`http://localhost:8081/note/note/${id}`, {
+            method: 'PUT',
+            headers: {
+             'Content-Type': 'application/json',
+             Authorization: 'Bearer ' + token
+            },
+            body: JSON.stringify({
+                title: Values.title,
+                content: Values.content,
+                privacy: Values.privacy
+            })
+        })
+        console.log(response)
+        if (response.status === 401) {
+         throw new Error(
+             "Updating note failed"
+         );
+     }
+     if (response.status !== 200 && response.status !== 201) {
+         console.log('Error!');
+         throw new Error('Updating note failed, check your network connection');
+     }
+     const noteData = await response.json()
+     console.log(noteData)
+     Values.title = ''
+     Values.content = ''
+     dispatch(editNote(null))
+    } catch(err) {
+        console.log(err)
+    }
+
+}
+
+
+export const fetchNotes = async (token, privacy) => {
     let notes
     try {
         const response = await fetch('http://localhost:8081/note/note', {
             method: 'GET',
             headers: {
-                Authorization: 'Bearer ' + token
+                Authorization: 'Bearer ' + token,
+                Privacy: privacy
             }
         })
         if (response.status !== 200 && response.status !== 201) {

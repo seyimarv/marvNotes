@@ -6,6 +6,7 @@ import Landingpageheader from '../../components/landingpageheader/Landingpagehea
 import WritingNote from '../../assets/writingNotes.svg'
 import ReadingNotes from '../../assets/ReadingNotes.svg'
 import Quote from '../../assets/icons8_Quote_96px 1.svg'
+import { Animated } from "react-animated-css";
 
 
 const LandingPage = () => {
@@ -21,15 +22,18 @@ const LandingPage = () => {
                     <div className="polygon">
 
                     </div>
+                    <div className="polygon-2">
+                     </div>
                     <Row className="landing_firstsection_container">
                         <Col className="landing_firstsection_right col-6" xs={12} lg={6} md={6} sm={12}>
-
+                        <Animated animationIn="fadeIn" >
                             <h4>
                                 Writing beautiful notes is a priority
                             </h4>
                             <p>
                                 With a marvienotes account, you can write and save your beautiful notes
                             </p>
+                        
                             <div className="button_container">
                                 <Button style={{
                                     background: '#EF7B45',
@@ -39,10 +43,10 @@ const LandingPage = () => {
                                     Get started
                                 </Button>
                             </div>
+                            </Animated>
                         </Col>
                         <Col className="landing_firstsection_left" xs={12} lg={6} md={6} sm={12}>
-                            <div>
-                            </div>
+                           
                             <img src={Noteimage} alt="Notebook">
 
                             </img>
@@ -52,6 +56,7 @@ const LandingPage = () => {
                 </Container>
             </section>
             <section className="landing_secondsection">
+            <Animated animationIn="fadeInUp" animationOut="fadeOut">
                 <Container fluid>
                     <Row className="landing_secondsection_container">
                         <Col className="landing_secondsection_left order-last order-lg-first order-md-first" lg={7} md={7} xs={12}>
@@ -125,6 +130,7 @@ const LandingPage = () => {
                         </Col>
                     </Row>
                 </Container>
+                </Animated>
 
             </section>
             <section className="landing_thirdsection">

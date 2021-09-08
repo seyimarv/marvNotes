@@ -1,11 +1,49 @@
+@import '../../assets/scss/mixins';
+
+
 .write-note {
-    padding: 40px 10px;
+    padding: 10px 10px;
     height: 100vh;
     position: fixed;
-   
     border-left: 1px solid #b3afaf80;
     background-color: white;
     
+
+    .write-note_privacy {
+        padding: 12px 0px;
+        border-bottom: 1.5px solid #b3afaf80;
+        font-size: 15px;
+        label {
+           
+            color: rgb(140, 140, 140);
+        }
+        select {
+            position: absolute;
+            right: 10px;
+            border: 1.5px solid #b3afaf80;
+            outline: none;
+            background-color: white;
+            color: rgb(82, 82, 82);
+
+        }
+    }
+    .write-note_con {
+        height: 80vh;
+        overflow-y: scroll;
+    }
+    .write-note_con::-webkit-scrollbar {
+        width: 0.5em;
+      }
+       
+      .write-note_con::-webkit-scrollbar-track {
+        box-shadow: transparent;
+      }
+    
+       .write-note_con::-webkit-scrollbar-thumb {
+        border-radius: 5px;
+        background-color: darkgrey;
+      
+       }
      .write-note_errormessage {
          color: red;
          font-size: 12px;
@@ -52,4 +90,14 @@
         border: #424CA0 !important ;
         padding: 5px 30px !important;
     }
+}
+
+.displayWritenoteMobile {
+@include respond(phone) {
+    padding: 0px 0px;
+    width: 100%;
+    position: static;
+    border-left: none;
+}
+    
 }

@@ -1,5 +1,6 @@
 
-import { setCurrentUser } from "../redux/user/user.actions";
+import { writeNote } from "../redux/notes/notes.actions";
+import { setCurrentUser, LOGOUT } from "../redux/user/user.actions";
 
 export const loginUser = async (values, dispatch) => {
     let user;
@@ -83,12 +84,7 @@ export const signUpUser = async (values) => {
 export const logout = (dispatch) => {
     localStorage.removeItem('user')
     localStorage.removeItem("expiryDate")
-    const user = {
-        isAuth: false, 
-        token: null, 
-        userId: null,
-        userName: null,
-        isLoading: false
-    }
-    dispatch(setCurrentUser(user))
+ 
+    dispatch(LOGOUT())
+    
 }

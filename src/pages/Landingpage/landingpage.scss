@@ -26,6 +26,22 @@ body {
 
         }
 
+        .polygon-2 {
+            margin-top: -450px;
+            position: absolute;
+            width: 455.98px;
+            height: 595.98px;
+            background: #43A2E6;
+            border-radius: 85px;
+            transform: rotate(25.85deg);
+            right: 100px;
+            background: linear-gradient(180deg, #000000 0%, rgba(246, 134, 234, 0.5) 100%);
+            mix-blend-mode: soft-light;
+            @include respond(phone) {
+                display: none;
+            }
+        }
+
         .polygon {
             margin-top: -250px;
             position: absolute;

@@ -1,3 +1,5 @@
+@import '../../assets/scss/mixins';
+
 body {
     height: 100%;
     overflow-x: hidden;
@@ -6,19 +8,73 @@ body {
 }
 
 
-.notes {
 
+
+
+.notes {
     width: 100%;
-    height: 100%;
-    padding: 0px 20px;
+    padding: 0px 0px;
+    margin: 0px 0px;
+    // padding-bottom: 40px;
+    .notes_con {
+        padding-bottom: 70px;
+        height: 90vh;
+        overflow-y: scroll;
+    }
+    .notes_con::-webkit-scrollbar {
+        width: 0.5em;
+      }
+       
+      .notes_con::-webkit-scrollbar-track {
+        box-shadow: transparent;
+      }
+       
+    &:hover {
+    
+       .notes_con::-webkit-scrollbar-thumb {
+        border-radius: 5px;
+        background-color: rgba(165, 164, 164, 0.8);
+
+        @include respond(phone) {
+            display: none;
+        }
+      
+      }
+
+    }
+
+ 
+   
+
 
     header {
         display: flex;
-        padding: 20px 0px;
+        padding: 20px 10px;
+        border-bottom: 1.5px solid #b3afaf80;
+        z-index: 1;
+        // position: fixed;
+        width: 100%;
+        // top: 0px;
+       
+      .header-icon {
+        @include respond(phone) {
+            display: none;
+        }
+        @include respond(tab-port) {
+          display: none;
+        }
+      }
 
+        @include respond(phone) {
+            background-color: white;
+            padding: 15px 8px;
+        }
+        @include respond(tab-port) {
+            background-color: white;
+        }
 
         .header_title {
-            padding: 0px 10px;
+            padding: 0px 0px;
             font-size: 18px;
             color: rgb(6, 5, 5);
             opacity: 0.9;
@@ -32,13 +88,31 @@ body {
     }
 
     .note_card {
+        position: relative;
+        border-radius: 10px;
+        height: 250px;
         background-color: white;
         border: 1px solid white;
-        width: 100%;
+        width: 95%;
         margin: 5px 0px;
         padding: 10px 10px 0px 10px;
         word-wrap: break-word;
+        box-shadow: 10px -4px 5px 0px rgba(184,184,184,0.2);
+        -webkit-box-shadow: 10px -4px 5px 0px rgba(184,184,184,0.2);
+        -moz-box-shadow: 10px -4px 5px 0px rgba(184,184,184,0.2);
+         @include respond(phone) {
+             height: 200px;
+         }
 
+         .note-options_toggle {
+             position: absolute;
+             right: 6px;
+             top: 3px;
+
+             .MuiSvgIcon-root  {
+                color: rgb(144, 143, 143); 
+             }
+         }
 
         .note_card_title {
             display: -webkit-box;
@@ -62,29 +136,13 @@ body {
 
 
         .note-footer {
-            display: flex;
-            justify-content: space-between;
+            position: absolute;
+            bottom: 4px;
+            
+            font-size: 15px;
+         
         }
-        .note-like_icon {
-            font-size: 18px !important;
-            color: rgb(137, 132, 132) !important;
-        }
-
        
-
-        .note_liked {
-            color: rgb(255, 0, 123) !important
-        }
-
-        .note-likes {
-            padding: 2px 10px;
-            color: rgb(137, 132, 132) !important;
-        }
-
-        .note-delete_icon {
-            font-size: 18px !important;
-            color: rgb(137, 132, 132) !important;
-        }
 
         p {
             display: -webkit-box;
@@ -93,7 +151,7 @@ body {
             overflow: hidden;
             margin-top: 5px;
 
-            padding: 5px 10px;
+            padding: 5px 0px;
         }
 
         .note_card_date {

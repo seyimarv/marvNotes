@@ -1,15 +1,43 @@
+@import '../../assets/scss/mixins';
+
 body {
     height: 100%;
     overflow-x: hidden;
 
 }
 
+
+.sidebar-display {
+    @include respond(phone) {
+        display: none;
+    }
+    @include respond(tab-port) {
+        display: none;
+    }
+}
+
 .all-notes_container {
     height: 100vh;
+    overflow-y: hidden;
     margin: 0px !important;
-    background-color: rgba(234, 234, 234, 0.8);
+    background-color: rgba(234, 234, 234, 0.4);
     padding-bottom: 100px;
 
+    .nodisplayMobile {
+        @include respond(phone) {
+            display: none;
+        }
+    }
+    @include respond(phone) {
+        background-color: white;
+        overflow-y: scroll;
+        padding-bottom: 0px;
+
+    }
+     
+    @include respond(tab-port) {
+        background-color: white;
+    }
     .all-notes_colummn {
         margin: 0px !important;
         padding: 0px !important;
