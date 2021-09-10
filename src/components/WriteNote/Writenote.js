@@ -7,14 +7,15 @@ import { Button } from 'react-bootstrap'
 import { TextareaAutosize } from "@material-ui/core";
 import { useDispatch, useSelector } from "react-redux";
 import { addNote, updateNote } from "../../services/notes";
-
+import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
+import { writeNote } from "../../redux/notes/notes.actions";
 
 const Writenote = ({ privacy, initialTitle, initialContent, id, editing }) => {
     const userToken = useSelector((state) => state.user.currentUser.token)
     const dispatch = useDispatch()
     const writeNoteState = useSelector((state => state.notes.writeNote))
     const editNoteState = useSelector((state => state.notes.editNote))
-
+     console.log(privacy)
     return (
         <div className={`write-note ${writeNoteState || editNoteState.editingNote? 'displayWritenoteMobile' : ''} `}>
 
@@ -75,7 +76,8 @@ const Writenote = ({ privacy, initialTitle, initialContent, id, editing }) => {
                         <div className="write-note_privacy">
                             <label htmlFor="privacy">Choose who can see this note</label>
                             {
-                                privacy ? <select name="privacy"
+                                values.privacy ?
+                                <select name="privacy"
                                     onChange={handleChange}
                                     onBlur={handleBlur}
                                     value={values.privacy}
@@ -131,6 +133,9 @@ const Writenote = ({ privacy, initialTitle, initialContent, id, editing }) => {
                             }
 
                         </div>
+                        <ArrowBackIosIcon className='back-arrow' onClick={() => {
+                            dispatch(writeNote())
+                        }}/>
                         <Button className="write-note_button" type='submit' disabled={isSubmitting}>
                             Post
                         </Button>

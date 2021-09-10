@@ -7,14 +7,17 @@ import '../Auth.scss'
 import Logo from '../../../assets/MarvnotesLogo.svg'
 import { loginUser } from '../../../services/auth';
 import { connect, useDispatch } from "react-redux";
-import { setCurrentUser } from '../../../redux/user/user.actions';
+import { Animated } from "react-animated-css";
 
 import { Link } from 'react-router-dom';
 
-const LoginPage = () => {
+const LoginPage = (props) => {
      const dispatch = useDispatch()
+     const path = 'login'
     return (
         <>
+
+        <Animated animationIn="fadeInLeft">
             <div className="auth-page">
                 <div className="d-flex auth-logo">
                     <img className="logo" src={Logo} alt="logo" />
@@ -43,9 +46,7 @@ const LoginPage = () => {
                         }}
                         onSubmit={(values, { setSubmitting }) => {
                             setTimeout(async () => {
-                             await loginUser(values, dispatch)
-                            
-
+                             await loginUser(values, dispatch, path)
                                 setSubmitting(false);
                             }, 100);
                         }}
@@ -115,7 +116,7 @@ const LoginPage = () => {
                     </p>
                 </section>
             </div>
-
+            </Animated>
         </>
     )
 }

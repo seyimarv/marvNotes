@@ -1,4 +1,5 @@
 import { createNote, deleteCurrentNote, editNote } from "../redux/notes/notes.actions";
+import { addNoteFailure, fetchpostFailure, addNoteSuccess, updateNoteFailure } from "../utils/Alerts.responses";
 
 
 export const addNote = async (Values, token) => {
@@ -29,8 +30,9 @@ export const addNote = async (Values, token) => {
     console.log(noteData)
     Values.title = ''
     Values.content = ''
+    addNoteSuccess()
    } catch(err) {
-       console.log(err)
+        addNoteFailure()
    }
 }
 
@@ -64,7 +66,7 @@ export const updateNote = async (Values, token, id, dispatch) => {
      Values.content = ''
      dispatch(editNote(null))
     } catch(err) {
-        console.log(err)
+        updateNoteFailure()
     }
 
 }
@@ -89,7 +91,7 @@ export const fetchNotes = async (token, privacy) => {
         console.log(notes)
         return notes
     } catch(err) {
-        console.log(err)
+         fetchpostFailure()
     }
 }
 

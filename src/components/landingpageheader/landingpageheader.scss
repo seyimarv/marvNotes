@@ -6,6 +6,7 @@
     width: 100%;
     height: 5.5rem;
     display: flex;
+  
 
     @include respond(phone) {
         margin-top: 0px;
@@ -38,7 +39,8 @@
 
         h6 {
             font-style: normal;
-            font-weight: normal;
+            font-weight: 400;
+       
             font-size: 18px;
             line-height: 21px;
 
@@ -49,15 +51,17 @@
     .main_header_item {
         width: 10%;
         padding: 0;
-
+        a:hover {
+            color: rgb(228, 225, 220);
+        }
         a {
             font-style: normal;
-            font-weight: normal;
+            font-weight: 400;
             font-size: 14px;
             line-height: 16px;
-
-            /* Whitish */
-
+            text-decoration: none;
+             cursor: pointer;
+            transition: 0.3s;
             color: #FFFFFF;
         }
 
@@ -71,14 +75,17 @@
         width: 20%;
         right: 4px;
 
+        a:hover {
+            color: white;
+        }
+
         a {
             font-style: normal;
             font-weight: normal;
             font-size: 14px;
             line-height: 16px;
-
-            /* Whitish */
-
+            
+            cursor: pointer;
             color: #FFFFFF;
 
             span {
@@ -96,7 +103,7 @@
 .mobile-nav { 
     height: 0rem; 
     opacity: 0;
-    transition: height 0.15s ease-out;
+    transition: height 0.3s ease-out;
     ul {
         list-style: none;
         margin: 3px 6px;
@@ -111,8 +118,7 @@
                 font-weight: normal;
                 font-size: 16px;
                 line-height: 16px;
-
-                /* Whitish */
+                text-decoration: none;
 
                 color: #FFFFFF !important;
             }

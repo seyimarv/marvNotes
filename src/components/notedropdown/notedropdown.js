@@ -5,6 +5,7 @@ import { Animated } from "react-animated-css";
 import { deleteNote, toggleLike } from '../../services/notes'
 import { useDispatch } from 'react-redux';
 import { editNote } from '../../redux/notes/notes.actions';
+import { deleteNoteCheck } from '../../utils/Alerts.responses';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -26,7 +27,7 @@ export default function ClickAway({openedId, note, noteCreatorId, currentUser, h
   const classes = useStyles();
   const deleteEachNote = () => {
   
-    deleteNote(currentUser.token, note._id, dispatch)
+  deleteNote(currentUser.token, note._id, dispatch)
   
    
   }
@@ -49,7 +50,9 @@ export default function ClickAway({openedId, note, noteCreatorId, currentUser, h
 
                 {
                   noteCreatorId === currentUser.userId ?
-                    <li onClick={deleteEachNote}> Delete </li>
+                    <li onClick={() => {
+                      deleteNoteCheck(deleteEachNote)
+                    }}> Delete </li>
                     : null
                 }
 

@@ -9,6 +9,7 @@ const INITIAL_STATE = {
         userId: null,
         isLoading: false
     },
+    LoggedOut:false
 }
 
 const userReducer = (state = INITIAL_STATE, action) => {
@@ -28,6 +29,7 @@ const userReducer = (state = INITIAL_STATE, action) => {
                 userId: null,
                 isLoading: false
             },
+            LoggedOut: true
 
         }
         default: 

@@ -1,10 +1,10 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
-import{ socket} from '../../services/socket'
+import { socket } from '../../services/socket'
 import { useSelector } from "react-redux";
 import { createNote, deleteCurrentNote, fetchCurrentNotes } from '../../redux/notes/notes.actions'
-import {  fetchNotes } from '../../services/notes'
+import { fetchNotes } from '../../services/notes'
 import './All-notes.scss'
 import WithLoading from '../../components/withLoading/withLoading'
 import Allnotes from './All-notes'
@@ -14,92 +14,131 @@ import Writenote from '../../components/WriteNote/Writenote'
 import EditNote from '../../components/WriteNote/EditNote'
 import './All-notes.scss'
 import PhoneFooter from '../../components/phonefooter/phonefooter'
+import { Animated } from "react-animated-css";
 
 const AllnoteCon = (props) => {
-    console.log(props.location.pathname)
-    const dispatch = useDispatch()
-    const currentUser = useSelector((state) => state.user.currentUser)
-    let currentNotes = useSelector((state) => state.notes.currentNotes.notes)
-    const isLoading = useSelector((state) => state.notes.currentNotes.isLoading)
-    const writeNoteState = useSelector((state) => state.notes.writeNote)
-    const editNoteState = useSelector((state) => state.notes.editNote)
-    console.log(editNoteState)
-    const getNotes = async () => { 
-        const notes = await fetchNotes(currentUser.token, false)
-        console.log(notes)
-        setTimeout(() => {
-            dispatch(fetchCurrentNotes({isLoading: false, notes: notes.notes}))
-          }, 1000)
-       
-    }
+  console.log(props.location.pathname)
+  console.log(props)
+  const dispatch = useDispatch()
+  const currentUser = useSelector((state) => state.user.currentUser)
+  let currentNotes = useSelector((state) => state.notes.currentNotes.notes)
+  const isLoading = useSelector((state) => state.notes.currentNotes.isLoading)
+  const writeNoteState = useSelector((state) => state.notes.writeNote)
+  const editNoteState = useSelector((state) => state.notes.editNote)
+  const [SidebarMobile, setSidebarMobile] = useState(false)
 
-    const getCreateNote = (note) => {
-         if (!note.private) {
-            dispatch(createNote(note))
-         }
-        
-    }
-    
-    
+
  
 
-    useEffect(() => {
+  const toggleSidebar = () => {
+    setSidebarMobile(!SidebarMobile)
+  }
+  console.log(editNoteState)
+  const getNotes = async (pathname) => {
+    dispatch(fetchCurrentNotes({ isLoading: true, notes: [] }))
+    let notes;
+    if (pathname == '/My Notes') {
+      notes = await fetchNotes(currentUser.token, true)
+    } else if (pathname == '/All Notes') {
+      notes = await fetchNotes(currentUser.token, false)
+    }
+    setTimeout(() => {
+      if(notes) {
+        dispatch(fetchCurrentNotes({ isLoading: false, notes: notes.notes }))
+      } else {
+        dispatch(fetchCurrentNotes({ isLoading: false, notes: []}))
+      }
+    
+    }, 500)
+
+  }
+
+  const getCreateNote = (note) => {
+
+    dispatch(createNote(note))
+
+
+  }
+
+
+
+
+  useEffect(() => {
+    getNotes(props.location.pathname)
+
+    socket.on('notes', data => {
+      if (data.action === 'create') {
+        getCreateNote(data.note)
+      } else if (data.action === 'delete') {
+        dispatch(deleteCurrentNote(data.note._id))
+
+      } else if (data.action === 'update') {
+        getNotes(props.location.pathname)
+      }
+      else if (data.action === 'like') {
         getNotes()
-        
-        socket.on('notes', data => {
-            if (data.action === 'create') {
-                console.log(data.note)
-                getCreateNote(data.note)
-            } else if (data.action === 'delete') {
-              dispatch(deleteCurrentNote(data.note._id)) 
+      }
+    }).off('notes', data => {
+      if (data.action === 'create') {
+        console.log(data.note)
+        getCreateNote(data.note)
+      } else if (data.action === 'delete') {
+        dispatch(deleteCurrentNote(data.note._id))
+      } else if (data.action === 'like') {
+        getNotes()
+      }
+    })
 
-            } else if (data.action === 'update') {
-                getNotes()
-            }
-            else if (data.action === 'like') {
-                getNotes()
-            }
-          })
-          return () => {
-            socket.off('notes', data => {
-                if (data.action === 'create') {
-                    console.log(data.note)
-                    getCreateNote(data.note)
-                } else if (data.action === 'delete') {
-                  dispatch(deleteCurrentNote(data.note._id))  
-                } else if (data.action === 'like') {
-                    getNotes()
-                }
-              })
+
+  }, [props.location.pathname])
+
+  return (
+    <>
+      <Container fluid className="all-notes_container">
+      {
+            SidebarMobile ?
+              <Animated animationIn='fadeInLeft' animationOut='fadeOutLeft' className="sidebar-displaymobile">
+                <Sidebar path={props.location.pathname} history={props.history} SidebarMobile={SidebarMobile} />
+              </Animated> : null
           }
-    }, [])
- 
-    return (
-        <>
-           <Container fluid className="all-notes_container">
-                <Row>
-                    <Col lg={2} className="all-notes_colummn sidebar-display">
-                    <div className='position-fixed'>
-                    <Sidebar path={props.location.pathname} />
-                    </div>
-                     
-                    </Col>
-                    <Col lg={6}  className={`all-notes_column ${writeNoteState || editNoteState.editingNote === true ? 'nodisplayMobile' : ''}`}>
-                       <WithLoading Component={Allnotes} currentNotes={currentNotes} isLoading={isLoading} pathname={props.location.pathname} />
-                    </Col>
-                    <Col lg={4} className='all-notes_column' >
-                      {
-                        editNoteState.editingNote ? <EditNote note={editNoteState.note} privacy="false"/> :
-                        <Writenote privacy="false" initialTitle='' initialContent=''/>
-                      }
-                       
-                    </Col>
-                </Row>
-                <PhoneFooter />
-            </Container>
-         
-        </>
-    )
+        <Row onClick={() => {
+          setSidebarMobile(false)
+        }} className={`${SidebarMobile ? 'dull-page' : ''}`}>
+          <Col lg={2} className="all-notes_colummn sidebar-display">
+            <div className='position-fixed'>
+              <Sidebar path={props.location.pathname} history={props.history} />
+            </div>
+          </Col>
+          <Col lg={6} className={`all-notes_column ${writeNoteState || editNoteState.editingNote === true ? 'nodisplayMobile' : ''}`}>
+            <WithLoading Component={Allnotes} currentNotes={currentNotes} isLoading={isLoading} pathname={props.location.pathname} />
+          </Col>
+          {
+            props.location.pathname == '/My Notes' ?
+              <Col lg={4} className='all-notes_column' >
+                {
+                  editNoteState.editingNote ? <EditNote note={editNoteState.note} privacy="true" />
+                    :
+                    <Writenote initialTitle='' initialContent='' privacy="true" />
+                }
+
+              </Col> :
+              <Col lg={4} className='all-notes_column' >
+                {
+                  editNoteState.editingNote ? <EditNote note={editNoteState.note} privacy="false" />
+                    :
+                    <Writenote initialTitle='' initialContent='' privacy="false" />
+                }
+
+              </Col>
+          }
+
+        </Row>
+       
+        <PhoneFooter toggleSidebar={toggleSidebar} SidebarMobile={SidebarMobile}/>
+      </Container>
+
+    </>
+  )
 }
 
 

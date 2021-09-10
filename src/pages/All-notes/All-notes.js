@@ -15,13 +15,14 @@ const Allnotes = ({pathname}) => {
     console.log(pathname)
     const currentUser = useSelector((state) => state.user.currentUser)
     let currentNotes = useSelector((state) => state.notes.currentNotes.notes)
-   
+    
+    const newpathname = pathname.slice(1);
  
    
     return (
         <>
             
-         <Notes Notes={currentNotes} page='All notes' PageIcon={LibraryBooksIcon} token={currentUser.token}/>
+         <Notes Notes={currentNotes} page={newpathname} PageIcon={LibraryBooksIcon} token={currentUser.token}/>
            
         </>
     )

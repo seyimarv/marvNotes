@@ -5,7 +5,7 @@ import ResetPassword from './pages/AuthPages/ForgotPassword/ForgotPassword';
 import LandingPage from './pages/Landingpage/landingpage';
 import SignupPage from './pages/AuthPages/SignupPage/SignupPage';
 import './App.css'
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { logout } from './services/auth';
 import { setCurrentUser} from './redux/user/user.actions';
@@ -13,14 +13,21 @@ import AllnotesCon from './pages/All-notes/AllnotesContainer';
 import ProtectedRoute from './ProtectedRoute';
 import { Switch, Route, Redirect } from 'react-router-dom';
 
-const App = () => {
+const App = (props) => {
   const dispatch = useDispatch()
   const currentUser = useSelector((state) => state.user.currentUser)
+  
+
   const autoLogout = (milliseconds) => {
     setTimeout(() => {
+    
+    
       logout(dispatch)
+ 
     }, milliseconds)
   }
+
+  console.log(props)
   useEffect(() => {
    let fetchUser = true
    let fetchedUser
@@ -40,11 +47,13 @@ const App = () => {
     if (new Date(expiryDate) <= new Date()) {
       logout(dispatch)
       dispatch(setCurrentUser({isLoading: false, ...fetchedUser}))
+     
       return;
     }
     const remainingMilliseconds = new Date(expiryDate).getTime() - new Date().getTime();
     dispatch(setCurrentUser({ isAuth: true, isLoading: false, ...fetchedUser }))
     autoLogout(remainingMilliseconds);
+   
     return () => {
       fetchUser = false
       dispatch(setCurrentUser({isAuth: false, isLoading: false}))
@@ -57,7 +66,7 @@ const App = () => {
        exact path = '/'
        render={() =>
           currentUser.isAuth ? (
-             <Redirect to='/All Notes' />
+             <Redirect from='/' to='/All Notes' />
           ) : (
             <LandingPage />
           )
@@ -77,7 +86,8 @@ const App = () => {
              <LoginPage/>
           )
         } />
-    <ProtectedRoute path='/All Notes' component={AllnotesCon} currentUser={currentUser}/>
+    <ProtectedRoute exact path='/All Notes' component={AllnotesCon} currentUser={currentUser}/>
+    <ProtectedRoute exact path='/My Notes' component={AllnotesCon} currentUser={currentUser} />
       
     
   </Switch>

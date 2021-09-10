@@ -1,8 +1,9 @@
 
 import { writeNote } from "../redux/notes/notes.actions";
 import { setCurrentUser, LOGOUT } from "../redux/user/user.actions";
+import { loginFailure, loginSuccess, logOutSuccess, signupFailure, signUpSuccess } from "../utils/Alerts.responses";
 
-export const loginUser = async (values, dispatch) => {
+export const loginUser = async (values, dispatch, path) => {
     let user;
     try {
         const response = await fetch('http://localhost:8081/auth/login', {
@@ -15,20 +16,21 @@ export const loginUser = async (values, dispatch) => {
                 password: values.password
             })
         })
-        console.log(response)
         if (response.status === 401) {
             throw new Error(
                 "Login failed, check your details and try again"
             );
         }
         if (response.status !== 200 && response.status !== 201) {
-            console.log('Error!');
             throw new Error('Login failed, check your network connection');
         }
         const userData = await response.json()
          user = userData
          dispatch(setCurrentUser({isAuth: true, ...user}))
          localStorage.setItem('user', JSON.stringify(user))
+         if(path) {
+            loginSuccess()
+        }
          const remainingMilliseconds = 60 * 60 * 1000;
          const expiryDate = new Date(
             new Date().getTime() + remainingMilliseconds
@@ -38,7 +40,10 @@ export const loginUser = async (values, dispatch) => {
             logout(dispatch)
           }, remainingMilliseconds)
     } catch (error) {
-        console.log(error)
+        if(path) {
+            loginFailure(error)
+        }
+       
 
     }
 
@@ -70,21 +75,24 @@ export const signUpUser = async (values) => {
             throw new Error('Creating a user failed!');
         }
         const userData = await response.json()
-        user = userData
-        console.log(user)
-     
+        signUpSuccess()
     } catch (error) {
-        console.log(error)
+        signupFailure(error)
 
     }
     // return user
      
 }
 
-export const logout = (dispatch) => {
+export const logout = (dispatch, history) => {
     localStorage.removeItem('user')
     localStorage.removeItem("expiryDate")
  
     dispatch(LOGOUT())
+    if(history) {
+        history.push('/')
+    }
+    logOutSuccess()
+    
     
 }

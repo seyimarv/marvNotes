@@ -1,5 +1,5 @@
 import DeleteIcon from '@material-ui/icons/Delete';
-import React, {useState} from 'react'
+import React, { useState } from 'react'
 import { useDispatch, useSelector } from "react-redux";
 import { Container, Row, Col, Button } from 'react-bootstrap'
 import ThumbUpIcon from '@material-ui/icons/ThumbUp';
@@ -23,17 +23,31 @@ const Notes = ({ Notes, page, PageIcon, token }) => {
                 <span className="header_title">{page}</span>
             </header>
             <Container fluid className='notes_con'>
-                <Row>
+                {
+                    page === 'My Notes' ?
+                        <Row>
 
-                    {
-                        Notes.map((note) => {
-                            return (   
-                             <Note  openedId={openedId} setOpenedId={setOpenedId} note={note} currentUser={currentUser} dispatch={dispatch}/>
-                            )
+                            {
+                                Notes.filter(note => note.creator._id === currentUser.userId && note.private === true).map((note) => {
+                                    return (
+                                        <Note openedId={openedId} setOpenedId={setOpenedId} note={note} currentUser={currentUser} dispatch={dispatch} />
+                                    )
 
-                        })
-                    }
-                </Row>
+                                })
+                            }
+                        </Row> : <Row>
+
+                            {
+                                Notes.map((note) => {
+                                    return (
+                                        <Note openedId={openedId} setOpenedId={setOpenedId} note={note} currentUser={currentUser} dispatch={dispatch} />
+                                    )
+
+                                })
+                            }
+                        </Row>
+                }
+
             </Container>
 
             {/* <div className="note_card">

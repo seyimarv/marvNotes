@@ -11,8 +11,9 @@ import MenuBookIcon from '@material-ui/icons/MenuBook';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import AddIcon from '@material-ui/icons/Add';
 import CopyrightIcon from '@material-ui/icons/Copyright';
+import { logoutCheck } from '../../utils/Alerts.responses';
 
-const Sidebar = ({path}) => {
+const Sidebar = ({path, history}) => {
     const currentUser = useSelector((state) => state.user.currentUser)
     const dispatch = useDispatch()
     return (
@@ -30,7 +31,7 @@ const Sidebar = ({path}) => {
             <Sidebaritem Icon={LibraryBooksIcon} active={path} text="All Notes" />
             <Sidebaritem Icon={MenuBookIcon} icon='' active={path} text="My Notes" />
             <Button className="sidebar-logout" onClick={() => {
-                logout(dispatch)
+                logoutCheck(logout, dispatch, history)
             }} style={{
                 color: "white"
             }}>

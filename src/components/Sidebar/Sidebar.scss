@@ -1,14 +1,28 @@
+@import '../../assets/scss/mixins';
+
 .sidebar {
     padding: 20px 20px;
     background-color: black;
     height: 100vh;
+   
 
+    @include respond(phone) {
+      padding: 20px 0px;  
+      margin: 0px 0px;
+    }
  
     h6 {
         color: rgba(255, 255, 255, 0.836);
         text-align: center;
         height: 5vh;
         font-size: 16px;
+
+
+        @include respond(phone) {
+            padding: 0px 20px;
+            text-align: left;
+        }
+
     }
     .sidebar_button {
         width: 100% !important;
@@ -18,6 +32,10 @@
         text-align: left;
         border: 1px solid #042A2B !important;
         font-size: 18px;
+
+        @include respond(phone) {
+            display: none;
+        }
 
     }
 

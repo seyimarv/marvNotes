@@ -16,7 +16,8 @@ body {
 
 
     .landing_firstsection {
-
+        height: 100vh;
+        
         background-color: #0E9BEB;
         padding: 50px 70px;
 
@@ -25,32 +26,83 @@ body {
             background-color: #424CA0;
 
         }
-
+        
+     
         .polygon-2 {
-            margin-top: -450px;
+            // margin-top: -450px;
+            // position: absolute;
+            // width: 455.98px;
+            // height: 595.98px;
+            // background: #43A2E6;
+            // border-radius: 85px;
+            // transform: rotate(25.85deg);
+            // right: 100px;
+            // background: linear-gradient(180deg, #000000 0%, rgba(246, 134, 234, 0.5) 100%);
+            // mix-blend-mode: soft-light;
+
             position: absolute;
-            width: 455.98px;
-            height: 595.98px;
-            background: #43A2E6;
-            border-radius: 85px;
-            transform: rotate(25.85deg);
-            right: 100px;
-            background: linear-gradient(180deg, #000000 0%, rgba(246, 134, 234, 0.5) 100%);
+            width: 425.98px;
+            height: 425.98px;
+            right: 186.98px;
+            top: 108.18px;
+
+            background: linear-gradient(180deg, #000000 0%, rgba(236, 168, 229, 0) 50%);
             mix-blend-mode: soft-light;
+            border-radius: 85px;
+            transform: rotate(-32.28deg);
+
             @include respond(phone) {
                 display: none;
             }
         }
 
         .polygon {
-            margin-top: -250px;
             position: absolute;
-            width: 455.98px;
-            height: 395.98px;
+            width: 595.98px;
+            height: 695.98px;
+            left: 148.49px;
+            top: -470.67px;
+
             background: #43A2E6;
             border-radius: 85px;
             transform: rotate(16.85deg);
-            margin-left: 100px;
+
+            // top: -100px;
+            // position: absolute;
+            // width: 555.98px;
+            // height: 395.98px;
+            // background: #43A2E6;
+            // border-radius: 85px;
+            // transform: rotate(16.85deg);
+            // left: 100px;
+
+            @include respond(phone) {
+                display: none;
+            }
+
+        }
+        .polygon-3 {
+            position: absolute;
+            width: 795.98px;
+            height: 255.98px;
+            left: -128.49px;
+            bottom: 100.67px;
+            overflow-y: hidden;
+
+         
+            background: linear-gradient(180deg, #5e5e5e 0%, rgba(246, 220, 243, 0) 80%);
+            mix-blend-mode: soft-light;
+            border-radius: 85px;
+            transform: rotate(16.85deg);
+
+            // top: -100px;
+            // position: absolute;
+            // width: 555.98px;
+            // height: 395.98px;
+            // background: #43A2E6;
+            // border-radius: 85px;
+            // transform: rotate(16.85deg);
+            // left: 100px;
 
             @include respond(phone) {
                 display: none;
@@ -59,7 +111,7 @@ body {
         }
 
         .landing_firstsection_container {
-
+            font-family: 'Roboto', sans-serif;
             color: white;
 
             @include respond(phone) {
@@ -67,30 +119,41 @@ body {
             }
 
             .landing_firstsection_right {
+                padding-top: 60px;
+
                 .button_container {
                     @include respond(phone) {
                         display: flex !important;
                         justify-content: center !important;
 
                     }
-
-                }
-
-                .btn {
-
-
-                    @include respond(phone) {
-                        background: #1EA7F3 !important;
-                        border: 1px solid #1EA7F3 !important;
-
+                    .btn:hover {
+                        margin-top: 28px;
+                        background: #eb5e1c !important
                     }
+                    .btn {
+                        margin-top: 30px;
+                        padding: 6px 40px !important;
+                        -webkit-box-shadow: 2px 2px 7px -4px rgba(221, 221, 221, 0.57);
+                        box-shadow: 2px 2px 7px -4px rgba(221, 221, 221, 0.57);
+                        transition: 0.3s;
+    
+                       
+                        @include respond(phone) {
+                            background: #1EA7F3 !important;
+                            border: 1px solid #1EA7F3 !important;
+    
+                        }
+                    }
+    
                 }
-
+               
                 h4 {
-                    max-width: 500px;
-                    font-weight: bold;
+
+                    max-width: 440px;
+
                     font-size: 40px;
-                    line-height: 47px;
+                    line-height: 50px;
 
                     @include respond(phone) {
                         font-family: Inter;
@@ -108,11 +171,11 @@ body {
                 }
 
                 p {
-                    max-width: 499px;
+                    max-width: 440px;
                     font-weight: 300;
                     font-size: 20px;
-                    line-height: 23px;
-
+                    line-height: 30px;
+                    margin-top: 20px;
 
                     @include respond(phone) {
                         font-style: normal;
@@ -132,6 +195,7 @@ body {
             }
 
             .landing_firstsection_left {
+                padding-top: 30px;
 
                 @include respond(phone) {
                     margin-top: 20px;
@@ -139,24 +203,24 @@ body {
                     justify-content: center;
                 }
 
-                div {
-                    position: absolute;
-                    background: linear-gradient(180deg, #000000 0%, rgba(236, 168, 229, 0) 100%);
-                    mix-blend-mode: soft-light;
-                    border-radius: 85px;
-                    transform: rotate(-32.28deg);
-                    width: 250px;
-                    height: 250px;
+                // div {
+                //     position: absolute;
+                //     background: linear-gradient(180deg, #000000 0%, rgba(236, 168, 229, 0) 100%);
+                //     mix-blend-mode: soft-light;
+                //     border-radius: 85px;
+                //     transform: rotate(-32.28deg);
+                //     width: 250px;
+                //     height: 250px;
 
-                    @include respond(phone) {
-                        width: 0px;
-                        height: 0px;
-                    }
-                }
+                //     @include respond(phone) {
+                //         width: 0px;
+                //         height: 0px;
+                //     }
+                // }
 
                 img {
-                    width: 422px;
-                    height: 249px;
+                    width: 522px;
+
 
                     @include respond(phone) {
                         width: 258.64px;
@@ -178,6 +242,7 @@ body {
 
 
         }
+
         @include respond(tab-port) {
             padding: 50px 0px;
 
@@ -209,6 +274,7 @@ body {
                     font-size: 35px;
                     line-height: 42px;
                     color: #000000;
+                    opacity: 0.8;
                 }
 
                 p {
@@ -219,6 +285,7 @@ body {
                     line-height: 17px;
                     max-width: 311px;
                     color: #454545;
+                    opacity: 0.8;
 
                     @include respond(phone) {
                         max-width: 100%;
@@ -228,20 +295,24 @@ body {
             }
 
             .landing_secondsection_left {
+                overflow-x: hidden;
                 @include respond(phone) {
                     display: flex;
                     justify-content: center;
                     align-items: center;
-
+                    margin: auto;
 
                 }
+
                 @include respond(tab-land) {
                     padding: 0px 0px;
                 }
+
                 @include respond(tab-port) {
                     padding: 0px 0px;
 
                 }
+
                 .boxes_background {
                     background-color: #424CA0;
                     position: absolute;
@@ -253,6 +324,7 @@ body {
                     @include respond(tab-land) {
                         margin: 0px 50px;
                     }
+
                     @include respond(tab-port) {
                         margin: 0px 0px;
 
@@ -266,7 +338,7 @@ body {
 
 
                     }
-                    
+
                 }
 
                 .landingsecondsection_box_container {
@@ -276,7 +348,8 @@ body {
                     @include respond(tab-land) {
                         padding: 0px 100px;
 
-                    }  
+                    }
+
                     @include respond(tab-port) {
                         padding: 0px 70px;
 
@@ -287,8 +360,8 @@ body {
 
 
 
-                                         }
-                  
+                    }
+
 
                     .landingsecondsection_boxes {
                         padding: 10px 10px;
@@ -308,6 +381,7 @@ body {
 
                             @include respond(phone) {
                                 padding: 0px 0px;
+                                font-size: 13px;
 
 
 
@@ -323,6 +397,15 @@ body {
                             font-size: 15px;
                             line-height: 18px;
 
+                            @include respond(phone) {
+                                padding: 0px 0px;
+                                font-size: 12px;
+                                font-weight: 500;
+                                opacity: 0.5;
+
+
+
+                            }
 
                         }
 
@@ -348,6 +431,7 @@ body {
     }
 
     .landing_thirdsection {
+        
         .landing_thirdsection_row {
             padding: 10px 10px;
             background: #E9F6FF;
@@ -362,6 +446,7 @@ body {
                 @include respond(phone) {
                     display: none;
                 }
+
                 @include respond(tab-port) {
                     position: inherit;
                     width: 243px;
@@ -376,11 +461,11 @@ body {
                 left: 100px;
 
 
-         
+
                 @include respond(tab-port) {
-                     padding: 20px 0px;
-                     position: relative;
-                     left: 20px;
+                    padding: 20px 0px;
+                    position: relative;
+                    left: 20px;
                 }
 
                 @include respond(phone) {
@@ -400,11 +485,12 @@ body {
                     font-weight: normal;
                     font-size: 20px;
                     line-height: 30px;
-
+                    opacity: 0.8;
                     color: #000000;
                 }
 
                 p {
+                    opacity: 0.8;
                     font-style: normal;
                     font-weight: normal;
                     font-size: 14px;
@@ -508,6 +594,21 @@ body {
         flex-direction: column;
         align-items: center;
 
+        .btn:hover {
+            margin-top: 0px;
+            background: #eb5e1c !important
+        }
+        .btn {
+            margin-top: 5px;
+            padding: 6px 40px !important;
+            -webkit-box-shadow: 2px 2px 7px -4px rgba(221, 221, 221, 0.57);
+            box-shadow: 2px 2px 7px -4px rgba(221, 221, 221, 0.57);
+            transition: 0.3s;
+
+           
+        }
+
+
         h6 {
             font-style: normal;
             font-weight: bold;
@@ -533,6 +634,7 @@ body {
             color: #FFFFFF;
         }
     }
+
     footer {
         display: flex;
         justify-content: center;

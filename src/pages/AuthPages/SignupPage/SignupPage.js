@@ -5,10 +5,11 @@ import { Button } from 'react-bootstrap'
 import Logo from '../../../assets/MarvnotesLogo.svg'
 import { loginUser, signUpUser } from '../../../services/auth';
 import { useDispatch } from "react-redux";
-
+import { Animated } from "react-animated-css";
 const SignupPage = () => {
    const dispatch = useDispatch()
     return (
+        <Animated animationIn="fadeInLeft">
         <div className="auth-page">
             <div className="d-flex auth-logo">
                 <img className="logo" src={Logo} alt="logo" />
@@ -143,6 +144,7 @@ const SignupPage = () => {
                 Already have an account, <a href="efe">Login?</a>
             </p>
         </div>
+        </Animated>
     )
 }
 
