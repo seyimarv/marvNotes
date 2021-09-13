@@ -1,5 +1,5 @@
 import { createNote, deleteCurrentNote, editNote } from "../redux/notes/notes.actions";
-import { addNoteFailure, fetchpostFailure, addNoteSuccess, updateNoteFailure } from "../utils/Alerts.responses";
+import { addNoteFailure, fetchpostFailure, addNoteSuccess, updateNoteFailure, updateNoteSuccess } from "../utils/Alerts.responses";
 
 
 export const addNote = async (Values, token) => {
@@ -64,7 +64,9 @@ export const updateNote = async (Values, token, id, dispatch) => {
      console.log(noteData)
      Values.title = ''
      Values.content = ''
+    
      dispatch(editNote(null))
+     updateNoteSuccess()
     } catch(err) {
         updateNoteFailure()
     }
@@ -134,3 +136,18 @@ export const toggleLike = async (token, id) => {
         console.log(err)
     }
 }
+
+// export const toggleFavoriteNotes = (note, likeuserId) => {
+//     const findNote = note.likes.includes(likeuserId)
+//     console.log(note.likes, likeuserId)
+//     if(findNote) {
+//        const likes = note.likes.filter(userId => likeuserId !== userId)
+//        note.likes = likes
+//        console.log(note.likes)
+//     } else {
+//        const likes = [likeuserId, ...note.likes]
+//       note.likes = likes
+//     }
+//     return note;
+
+// }

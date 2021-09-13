@@ -12,6 +12,7 @@ import { setCurrentUser} from './redux/user/user.actions';
 import AllnotesCon from './pages/All-notes/AllnotesContainer';
 import ProtectedRoute from './ProtectedRoute';
 import { Switch, Route, Redirect } from 'react-router-dom';
+import Favoritespage from './pages/Favorites/Favoritespage';
 
 const App = (props) => {
   const dispatch = useDispatch()
@@ -88,6 +89,7 @@ const App = (props) => {
         } />
     <ProtectedRoute exact path='/All Notes' component={AllnotesCon} currentUser={currentUser}/>
     <ProtectedRoute exact path='/My Notes' component={AllnotesCon} currentUser={currentUser} />
+    <ProtectedRoute exact path='/Favorites' component={Favoritespage} currentUser={currentUser} />
       
     
   </Switch>

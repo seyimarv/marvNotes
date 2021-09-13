@@ -23,3 +23,18 @@ export const editNote = (note) => ({
     type: noteActionTyoes.EDIT_NOTE,
     payload: note
 })
+
+export const updateNote = (note) => ({
+    type: noteActionTyoes.UPDATE_NOTE,
+    payload: note
+})
+
+export const toggleFavorites = (notes) => ({
+    type: noteActionTyoes.TOGGLE_FAVORITES,
+    payload: notes
+})
+
+export const getFavorites = (notes) => ({
+    type: noteActionTyoes.GET_FAVORITES,
+    payload: notes
+})

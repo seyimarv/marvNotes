@@ -6,70 +6,80 @@ const Toast = Swal.mixin({
     position: 'bottom',
     showConfirmButton: false,
     timer: 3000,
+    timerProgressBar: true,
+    customClass: 'toast-alert'
 })
 
 //Alerts for success responses
 export const loginSuccess = () => {
     Toast.fire({
         icon: 'success',
-        title: 'logged in successfully' 
+        title:  "<p>" + 'Logged in successfully' + "</p>" 
     })
 }
 
 export const signUpSuccess = () => {
     Toast.fire({
         icon: 'success',
-        title: 'Sign up successfull'
+        title:  "<p>" + 'Signed up successfully' + "</p>"
     })
 }
 
 export const logOutSuccess = () => {
     Toast.fire({
         icon: 'success',
-        title: 'Logged out successfully'
+        title: "<p>" + 'Logged out successfully' + "</p>"
     })
 }
 
 export const addNoteSuccess  = () => {
     Toast.fire({
         icon: 'success',
-        title:  'Note added' 
+        title:  "<p>" + 'Note added' + "</p>"
     })
 }
+
+export const updateNoteSuccess  = () => {
+    Toast.fire({
+        icon: 'success',
+        title:  "<p>" + 'Note Edited' + "</p>"
+    })
+}
+
 
 //Alerts for error responses
 export const loginFailure = (err) => {
     Toast.fire({
         icon: 'error',
-        title:  err 
+        title:  "<p>" + err + "</p>"
     })
 }
 
 export const signupFailure = (err) => {
     Toast.fire({
         icon: 'error',
-        title:  err 
+        title:   "<p>" + err + "</p>" 
     })
 }
 
 export const fetchpostFailure = (err) => {
     Toast.fire({
         icon: 'error',
-        title:  'Unable to load notes, please check your network connection and reload the page' 
-    })
+        title: "<p>" +  'Unable to load notes, please check your network connection and reload the page'  + "</p>"
+    }) 
 }
 
 export const addNoteFailure  = () => {
     Toast.fire({
         icon: 'error',
-        title:  'Unable to Add note, please check your network connection' 
+        title:  "<p>" +  'Unable to Add notes, please check your network connection and reload the page'  + "</p>" 
     })
 }
 
 export const updateNoteFailure  = () => {
     Toast.fire({
         icon: 'error',
-        title:  'Unable to update note, please check your network connection and try again' 
+        title:  "<p>" +  'Unable to edit note, please check your network connection and reload the page'  + "</p>"
     })
 }
 
@@ -77,10 +87,13 @@ export const updateNoteFailure  = () => {
 //info
 export const logoutCheck = (logout, dispatch, history) => {
     Swal.fire({
-        title: 'Are you sure you want to logout?',
+        title: "<p>" + 'Are you sure you want to logout?' + "</p>",
         showDenyButton: true,
         confirmButtonText: 'Yes',
         denyButtonText: `No`,
+        confirmButtonColor: "#424CA0",
+        denyButtonColor: "#ff0099",
+        customClass: 'swalcheck-wide'
       }).then((result) => {
      
         if (result.isConfirmed) {
@@ -92,10 +105,13 @@ export const logoutCheck = (logout, dispatch, history) => {
 
 export const deleteNoteCheck = (deleteNote) => {
     Swal.fire({
-        title: 'Are you sure you want delete this Note?',
+        title:  "<p>Are you sure you want to delete this note?</p>",
         showDenyButton: true,
         confirmButtonText: 'Yes',
         denyButtonText: `No`,
+        confirmButtonColor: "#424CA0",
+        denyButtonColor: "#ff0099",
+        customClass: 'swalcheck-wide'
       }).then((result) => {
      
         if (result.isConfirmed) {

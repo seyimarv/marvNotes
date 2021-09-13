@@ -15,8 +15,11 @@ const INITIAL_STATE = {
         note: null,
         editingNote: false
     },
-    writeNote: false
-
+    writeNote: false,
+    Favorites: {
+        notes: [],
+        isLoading: true
+    }
 }
 
 
@@ -31,7 +34,7 @@ const notesReducer = (state = INITIAL_STATE, action) => {
             return {
                 ...state,
                 currentNotes: {
-                    notes: [...state.currentNotes.notes, action.payload],
+                    notes: [action.payload, ...state.currentNotes.notes],
                     isLoading: false
                 },
                 writeNote: false
@@ -60,6 +63,36 @@ const notesReducer = (state = INITIAL_STATE, action) => {
                     editingNote: !state.editNote.editingNote
                 }
             }
+        case (noteActionTyoes.UPDATE_NOTE): {
+            return {
+                ...state,
+                currentNotes: {
+                    notes: action.payload,
+                    isLoading: false
+                }
+            }
+        }
+        case (noteActionTyoes.TOGGLE_FAVORITES): {
+            return {
+                ...state,
+                currentNotes: {
+                    notes: action.payload,
+                    isLoading: false
+                }
+
+            }
+        }
+        case (noteActionTyoes.GET_FAVORITES): {
+            return {
+                ...state,
+                Favorites: {
+                    notes: action.payload.notes.filter(note => note.likes.includes(action.payload.currentUser.userId)),
+                    isLoading: false
+                }
+                    
+            }
+        }
+
         case (userActionTypes.LOGOUT):
             return {
                 ...state,

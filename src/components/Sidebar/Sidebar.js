@@ -12,6 +12,7 @@ import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import AddIcon from '@material-ui/icons/Add';
 import CopyrightIcon from '@material-ui/icons/Copyright';
 import { logoutCheck } from '../../utils/Alerts.responses';
+import StarsIcon from '@material-ui/icons/Stars';
 
 const Sidebar = ({path, history}) => {
     const currentUser = useSelector((state) => state.user.currentUser)
@@ -27,9 +28,10 @@ const Sidebar = ({path, history}) => {
                 </span>
                 New
             </Button>
-            <Sidebaritem Icon={HomeIcon}   active={path} text="Home"  />
+           
             <Sidebaritem Icon={LibraryBooksIcon} active={path} text="All Notes" />
             <Sidebaritem Icon={MenuBookIcon} icon='' active={path} text="My Notes" />
+            <Sidebaritem Icon={StarsIcon}   active={path} text="Favorites"  />
             <Button className="sidebar-logout" onClick={() => {
                 logoutCheck(logout, dispatch, history)
             }} style={{

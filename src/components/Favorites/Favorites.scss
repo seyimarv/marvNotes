@@ -1,0 +1,123 @@
+@import '../../assets/scss/mixins';
+.favorites {
+    width: 100%;
+    padding: 0px 0px;
+    margin: 0px 0px;
+    .favorites_con {
+        padding-top: 10px;
+        padding-bottom: 70px;
+        height: 90vh;
+        overflow-y: scroll;
+    }
+    .favorites_con::-webkit-scrollbar {
+        width: 0.4em;
+      }
+       
+      .favorites_con::-webkit-scrollbar-track {
+        box-shadow: transparent;
+      }
+       
+    &:hover {
+    
+       .favorites_con::-webkit-scrollbar-thumb {
+        border-radius: 5px;
+        background-color: rgba(169, 165, 165, 0.8);
+
+        @include respond(phone) {
+            display: none;
+        }
+      
+      }
+    }
+    header {
+        display: flex;
+        padding: 10px 10px;
+        border-bottom: 1.2px solid #b3afaf80;
+        z-index: 1;
+        // position: fixed;
+        width: 100%;
+        // top: 0px;
+       
+      .favorites_header-icon {
+        @include respond(phone) {
+            display: none;
+        }
+        @include respond(tab-port) {
+          display: none;
+        }
+      }
+
+        @include respond(phone) {
+            background-color: white;
+            padding: 15px 8px;
+        }
+        @include respond(tab-port) {
+            background-color: white;
+        }
+
+        .favorites_header_title {
+            padding: 0px 0px;
+            font-size: 18px;
+            color: rgb(6, 5, 5);
+            opacity: 0.9;
+
+        }
+    }
+
+}
+
+
+.each_favorite {
+    background-color: white;
+    position: relative;
+    height: 100px;
+    background-color: white;
+    width: 95%;
+    margin: 5px 0px;
+    padding: 10px 10px 0px 10px;
+    word-wrap: break-word;
+    box-shadow: 4px 2px 5px 0px rgba(233,233,233,0.75);
+    -webkit-box-shadow: 4px 2px 5px 0px rgba(233,233,233,0.75);
+    -moz-box-shadow: 4px 2px 5px 0px rgba(233,233,233,0.75);
+
+    .each_favorite-title {
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 2;
+        overflow: hidden;
+        font-size: 15px;
+        font-weight: 600;
+        opacity: 0.9;
+        color: rgb(1, 16, 67);
+    }
+
+    p {
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 2;
+        overflow: hidden;
+        font-size: 12px;
+        padding: 5px 0px;
+        opacity: 0.7;
+    }
+    .each_favorite-footer {
+        position: absolute;
+        bottom: 3px;
+        display: flex;
+        width: 95%;
+        justify-content: space-between;
+        
+        .each_favorite-footer-timer-icon {
+            font-size: 12px !important;
+            margin: 0px 4px !important;
+        }
+        span {
+            font-size: 10px !important;
+            opacity: 0.5;
+        }
+        .each_favorite-delete {
+            color: rgb(244, 0, 41) !important;
+        }
+        
+    }
+}

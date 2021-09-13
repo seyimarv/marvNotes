@@ -3,7 +3,7 @@ import { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import { socket } from '../../services/socket'
 import { useSelector } from "react-redux";
-import { createNote, deleteCurrentNote, fetchCurrentNotes } from '../../redux/notes/notes.actions'
+import { createNote, deleteCurrentNote, fetchCurrentNotes, updateNote} from '../../redux/notes/notes.actions'
 import { fetchNotes } from '../../services/notes'
 import './All-notes.scss'
 import WithLoading from '../../components/withLoading/withLoading'
@@ -21,12 +21,12 @@ const AllnoteCon = (props) => {
   console.log(props)
   const dispatch = useDispatch()
   const currentUser = useSelector((state) => state.user.currentUser)
-  let currentNotes = useSelector((state) => state.notes.currentNotes.notes)
+  const currentNotes = useSelector((state) => state.notes.currentNotes.notes)
   const isLoading = useSelector((state) => state.notes.currentNotes.isLoading)
   const writeNoteState = useSelector((state) => state.notes.writeNote)
   const editNoteState = useSelector((state) => state.notes.editNote)
   const [SidebarMobile, setSidebarMobile] = useState(false)
-
+  // var getUpdateNote;
 
  
 
@@ -53,48 +53,28 @@ const AllnoteCon = (props) => {
 
   }
 
-  const getCreateNote = (note) => {
 
-    dispatch(createNote(note))
+ 
 
 
-  }
-
+ 
 
 
 
   useEffect(() => {
     getNotes(props.location.pathname)
 
-    socket.on('notes', data => {
-      if (data.action === 'create') {
-        getCreateNote(data.note)
-      } else if (data.action === 'delete') {
-        dispatch(deleteCurrentNote(data.note._id))
-
-      } else if (data.action === 'update') {
-        getNotes(props.location.pathname)
-      }
-      else if (data.action === 'like') {
-        getNotes()
-      }
-    }).off('notes', data => {
-      if (data.action === 'create') {
-        console.log(data.note)
-        getCreateNote(data.note)
-      } else if (data.action === 'delete') {
-        dispatch(deleteCurrentNote(data.note._id))
-      } else if (data.action === 'like') {
-        getNotes()
-      }
-    })
+  
 
 
   }, [props.location.pathname])
 
+  console.log(currentNotes)
+
+  
   return (
     <>
-      <Container fluid className="all-notes_container">
+      <Container fluid className="all-notes_container" fluid>
       {
             SidebarMobile ?
               <Animated animationIn='fadeInLeft' animationOut='fadeOutLeft' className="sidebar-displaymobile">
