@@ -8,7 +8,6 @@ import {  getFavorites, updateNote, fetchCurrentNotes} from '../../redux/notes/n
 import{ socket} from '../../services/socket'
 import { useDispatch } from 'react-redux'
 import { fetchNotes } from '../../services/notes'
-import { Favorite } from '@material-ui/icons'
 import WithLoading from '../../components/withLoading/withLoading'
 
 
@@ -55,12 +54,12 @@ const Favoritespage = (props) => {
     useEffect(() => {
        getNotes()
     
-        socket.on('notes', data => {
-            if (data.action === 'like') {
-                const updatedNotes =  getUpdateNote(data.note)
-                dispatch(updateNote(updatedNotes))
-            }
-          })
+        // socket.on('notes', data => {
+        //     if (data.action === 'like') {
+        //         const updatedNotes =  getUpdateNote(data.note)
+        //         dispatch(updateNote(updatedNotes))
+        //     }
+        //   })
     }, [])
     
     return (

@@ -81,7 +81,7 @@ const AllnoteCon = (props) => {
                 <Sidebar path={props.location.pathname} history={props.history} SidebarMobile={SidebarMobile} />
               </Animated> : null
           }
-        <Row onClick={() => {
+        <Row className='no-gutter' onClick={() => {
           setSidebarMobile(false)
         }} className={`${SidebarMobile ? 'dull-page' : ''}`}>
           <Col lg={2} className="all-notes_colummn sidebar-display">

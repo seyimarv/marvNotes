@@ -46,6 +46,15 @@ export const updateNoteSuccess  = () => {
     })
 }
 
+export const toggleLikeSucces = (added) => {
+    added === 'added' ?  Toast.fire({
+        icon: 'success',
+        title:  "<p>" + 'Note added to favorites' + "</p>"
+    }) :  Toast.fire({
+        icon: 'success',
+        title:  "<p>" + 'Note Removed from favorites' + "</p>"
+    })
+}
 
 //Alerts for error responses
 export const loginFailure = (err) => {

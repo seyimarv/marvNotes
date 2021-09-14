@@ -82,6 +82,16 @@ const notesReducer = (state = INITIAL_STATE, action) => {
 
             }
         }
+        case (noteActionTyoes.REMOVE_FROM_FAVORITES): {
+            return {
+                ...state,
+                Favorites: {
+                    notes:  action.payload.favorites.filter(note => note._id !== action.payload.note._id),
+                    isLoading: false
+                }
+                    
+            }
+        }
         case (noteActionTyoes.GET_FAVORITES): {
             return {
                 ...state,
@@ -92,6 +102,7 @@ const notesReducer = (state = INITIAL_STATE, action) => {
                     
             }
         }
+ 
 
         case (userActionTypes.LOGOUT):
             return {

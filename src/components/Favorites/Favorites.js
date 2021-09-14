@@ -5,10 +5,9 @@ import EachFavorite from './EachFavorite'
 import './Favorites.scss'
 import StarsIcon from '@material-ui/icons/Stars';
 
+
 const Favorites = () => {
-    // const currentUser = useSelector((state) => state.user.currentUser)
     const favorites = useSelector((state) => state.notes.Favorites.notes)
-    console.log(favorites)
     return (
 
         <div className='favorites'>

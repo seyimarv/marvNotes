@@ -38,3 +38,8 @@ export const getFavorites = (notes) => ({
     type: noteActionTyoes.GET_FAVORITES,
     payload: notes
 })
+
+export const removeFromFavorites = (favorites) => ({
+    type: noteActionTyoes.REMOVE_FROM_FAVORITES,
+    payload: favorites
+})

@@ -13,9 +13,9 @@ const Sidebaritem = ({ Icon,  text, active }) => {
           <div className='sidebar-item'>
            
                 <div className={`${path === text && 'activesidebar-item'} d-flex`}>
-                <span>
+           
                  <Icon />
-                </span>
+           
                 <p>
                 {text}
                 </p>

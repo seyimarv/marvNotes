@@ -1,5 +1,5 @@
 import { createNote, deleteCurrentNote, editNote } from "../redux/notes/notes.actions";
-import { addNoteFailure, fetchpostFailure, addNoteSuccess, updateNoteFailure, updateNoteSuccess } from "../utils/Alerts.responses";
+import { addNoteFailure, fetchpostFailure, addNoteSuccess, updateNoteFailure, toggleLikeSucces, updateNoteSuccess } from "../utils/Alerts.responses";
 
 
 export const addNote = async (Values, token) => {
@@ -126,10 +126,16 @@ export const toggleLike = async (token, id) => {
                 Authorization: 'Bearer ' + token
             }
         })
-        console.log(response)
         if (response.status !== 200 && response.status !== 201) {
             console.log('Error!');
             throw new Error('deleting notes failed, check your network connection');
+        }
+       const resp = await response.json()
+        console.log(resp)
+        if (resp.message == 'Note unLiked') {
+            toggleLikeSucces()
+        } else {
+            toggleLikeSucces('added')
         }
     
     } catch(err) {

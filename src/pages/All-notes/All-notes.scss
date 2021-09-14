@@ -3,6 +3,9 @@
 body {
     height: 100%;
     overflow-x: hidden;
+    margin: 0px;
+    padding: 0px;
+    width: 100%;
 
 }
 
@@ -33,9 +36,9 @@ body {
 .all-notes_container {
     height: 100vh;
     overflow-y: hidden;
-    margin: 0px !important;
     background-color: rgba(234, 234, 234, 0.4);
     padding-bottom: 100px;
+    background-color: rgba(243, 239, 239, 0.3);
 
     .nodisplayMobile {
         @include respond(phone) {
@@ -54,6 +57,9 @@ body {
     }
     .all-notes_colummn {
         margin: 0px !important;
-        padding: 0px !important;
+        // padding: 0px !important;
+        padding-right:0 !important;
+        padding-left:0 !important;
+        width: 100%;
     }
 }
