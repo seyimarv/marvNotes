@@ -132,12 +132,11 @@ body {
         .note_card_title {
             display: -webkit-box;
             -webkit-box-orient: vertical;
-            -webkit-line-clamp: 2;
+            -webkit-line-clamp: 1;
             overflow: hidden;
-            font-size: 16px;
+            font-size: 18px;
             font-weight: 600;
             opacity: 0.9;
-            margin: 0px 5px;
             margin-top: 10px;
             opacity: 0.8;
 
@@ -168,10 +167,10 @@ body {
         }
        
 
-        p {
+        .note_card_content {
             display: -webkit-box;
             -webkit-box-orient: vertical;
-            -webkit-line-clamp: 2;
+            -webkit-line-clamp: 7;
             overflow: hidden;
             margin-top: 2px;
             padding: 5px 0px;

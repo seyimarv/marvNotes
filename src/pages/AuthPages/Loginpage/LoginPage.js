@@ -15,8 +15,7 @@ const LoginPage = (props) => {
      const dispatch = useDispatch()
      const path = 'login'
     return (
-        <>
-
+  
         <Animated animationIn="fadeInLeft">
             <div className="auth-page">
                 <div className="d-flex auth-logo">
@@ -108,7 +107,7 @@ const LoginPage = (props) => {
                 <section className="login-page_secondsection">
                     <p>
                         Forgot Password?
-                        <a href="dsd"> - Reset here</a>
+                        <Link to="/forgot-password"> - Reset here</Link>
                     </p>
 
                     <p>
@@ -117,7 +116,7 @@ const LoginPage = (props) => {
                 </section>
             </div>
             </Animated>
-        </>
+
     )
 }
 

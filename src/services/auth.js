@@ -94,5 +94,70 @@ export const logout = (dispatch, history) => {
     }
     logOutSuccess()
     
-    
+}
+ 
+export const forgotPassword =async (values, dispatch, history) => {
+    let user;
+    try {
+        const response = await fetch('http://localhost:8081/auth/forgot-password', {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                email: values.email,
+            })
+        })
+        if (response.status === 401) {
+            throw new Error(
+                "Login failed, check your details and try again"
+            );
+        }
+        if (response.status !== 200 && response.status !== 201) {
+            throw new Error('Login failed, check your network connection');
+        }
+        const userData = await response.json()
+         user = userData.user
+         localStorage.setItem('userResetId', JSON.stringify(user._id))
+         const remainingMilliseconds = 60 * 60 * 10000;
+         const expiryDate = new Date(
+            new Date().getTime() + remainingMilliseconds
+          );
+          localStorage.setItem('expiryDate', expiryDate.toISOString());
+    } catch (error) {
+        console.log(error)
+
+    }
+}
+
+export const resetPassword =async (values, token,  history) => {
+    let user;
+    try {
+        const response = await fetch(`http://localhost:8081/auth/reset-password/${token}`, {
+            method: 'PUT',
+            headers: {
+                 Authorization: 'Bearer ' + token,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                password: values.password,
+                token: token,
+            })
+        })
+        if (response.status === 401) {
+            throw new Error(
+                "Password reset failed"
+            );
+        }
+        if (response.status !== 200 && response.status !== 201) {
+            throw new Error('Password failed, check your network connection');
+        }
+        const userData = await response.json()
+         user = userData.user
+         console.log(user)
+          history.push('/login')
+    } catch (error) {
+        console.log(error)
+
+    }
 }

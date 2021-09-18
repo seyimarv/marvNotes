@@ -1,7 +1,7 @@
 import React from 'react'
-import ForgotPassword from './pages/AuthPages/ResetPassword/ResetPassword';
+import ResetPassword from './pages/AuthPages/ResetPassword/ResetPassword';
 import LoginPage from './pages/AuthPages/Loginpage/LoginPage';
-import ResetPassword from './pages/AuthPages/ForgotPassword/ForgotPassword';
+import ForgotPassword from './pages/AuthPages/ForgotPassword/ForgotPassword';
 import LandingPage from './pages/Landingpage/landingpage';
 import SignupPage from './pages/AuthPages/SignupPage/SignupPage';
 import './App.css'
@@ -90,6 +90,20 @@ const App = (props) => {
     <ProtectedRoute exact path='/All Notes' component={AllnotesCon} currentUser={currentUser}/>
     <ProtectedRoute exact path='/My Notes' component={AllnotesCon} currentUser={currentUser} />
     <ProtectedRoute exact path='/Favorites' component={Favoritespage} currentUser={currentUser} />
+    <Route exact path='/forgot-password' render={() =>
+          currentUser.isAuth ? (
+             <Redirect to='/All Notes' />
+          ) : (
+             <ForgotPassword />
+          )
+        }  />
+      <Route exact path='/reset/:token' render={(props) =>
+          currentUser.isAuth ? (
+             <Redirect to='/All Notes' />
+          ) : (
+             <ResetPassword {...props} />
+          )
+        }  />
       
     
   </Switch>

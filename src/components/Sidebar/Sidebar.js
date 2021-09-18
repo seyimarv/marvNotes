@@ -46,7 +46,7 @@ const Sidebar = ({path, history}) => {
                 }}>
                     <ExitToAppIcon />
                 </span>
-                Log out</Button>
+                Log Out</Button>
 
             <div className="sidebar_copyright d-flex">
                 <span style={{

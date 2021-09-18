@@ -68,29 +68,25 @@
         }
 
         .sidebar-logout:hover {
-            background-color: rgba(0, 0, 255, 0.4);
+            background-color: rgba(0, 0, 255, 0.1);
         }
 
         .sidebar-logout {
-            padding: 15px 5px !important;
-            width: 100% !important;
-            padding: 10px 20px;
+            width: 100%;
             text-align: left;
             margin-top: 20px;
             background-color: transparent;
-            font-size: 17px;
-            color: white !important;
+            font-size: 14px;
+            color: white;
             border: 1px solid transparent;
             border-top: 1px solid rgba(0, 0, 255, 0.2);
             border-bottom: 1px solid rgba(0, 0, 255, 0.2);
-            ;
-            margin: 0px !important;
+            margin: 0px;
             position: absolute;
             left: 0px;
             bottom: 80px;
             transition: 0.2s;
-
-
+            padding: 15px 5px;
         }
 
         .sidebar_copyright {
