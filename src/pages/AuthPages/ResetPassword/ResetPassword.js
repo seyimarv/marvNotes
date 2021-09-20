@@ -4,18 +4,13 @@ import { Formik } from 'formik';
 import { Button } from 'react-bootstrap'
 import '../Auth.scss'
 import Logo from '../../../assets/MarvnotesLogo.svg'
-import { loginUser, resetPassword } from '../../../services/auth';
-import {  useDispatch } from "react-redux";
+import { resetPassword } from '../../../services/auth';
 import { Animated } from "react-animated-css";
 
 
 const ResetPassword = (props) => {
-    const dispatch = useDispatch()
-    console.log(props)
     const token = props.match.params.token
     const history = props.history
-    console.log(token)
-
    
     return (
         <Animated animationIn="fadeInLeft">
@@ -27,7 +22,7 @@ const ResetPassword = (props) => {
 
             <section className="auth-page_first-section">
                 <h6>Welcome</h6>
-                <p>Login to continue</p>
+                <p>Please enter new password</p>
                 <Formik
                     initialValues={{ password: '', confirmPassword: '' }}
                     validate={values => {
@@ -43,7 +38,6 @@ const ResetPassword = (props) => {
                     }}
                     onSubmit={(values, { setSubmitting }) => {
                         setTimeout(async () => {
-                        //  await loginUser(values, dispatch, path)
                         await resetPassword(values, token, history)
                             setSubmitting(false);
                         }, 100);
@@ -57,7 +51,6 @@ const ResetPassword = (props) => {
                         handleBlur,
                         handleSubmit,
                         isSubmitting,
-                        /* and other goodies */
                     }) => (
                         <form onSubmit={handleSubmit}>
 

@@ -1,7 +1,7 @@
 
 import { writeNote } from "../redux/notes/notes.actions";
 import { setCurrentUser, LOGOUT } from "../redux/user/user.actions";
-import { loginFailure, loginSuccess, logOutSuccess, signupFailure, signUpSuccess } from "../utils/Alerts.responses";
+import { forgotPasswordFailure, loginFailure, loginSuccess, logOutSuccess, resetPasswordFailure, resetPasswordSuccess, signupFailure, signUpSuccess } from "../utils/Alerts.responses";
 
 export const loginUser = async (values, dispatch, path) => {
     let user;
@@ -96,7 +96,7 @@ export const logout = (dispatch, history) => {
     
 }
  
-export const forgotPassword =async (values, dispatch, history) => {
+export const forgotPassword =async (values, dispatch, setEmailSent) => {
     let user;
     try {
         const response = await fetch('http://localhost:8081/auth/forgot-password', {
@@ -110,14 +110,16 @@ export const forgotPassword =async (values, dispatch, history) => {
         })
         if (response.status === 401) {
             throw new Error(
-                "Login failed, check your details and try again"
+                "This email does not exist, try with another email"
             );
         }
         if (response.status !== 200 && response.status !== 201) {
-            throw new Error('Login failed, check your network connection');
+            throw new Error('an error occured, please check your network connection');
         }
         const userData = await response.json()
          user = userData.user
+         setEmailSent(true)
+         
          localStorage.setItem('userResetId', JSON.stringify(user._id))
          const remainingMilliseconds = 60 * 60 * 10000;
          const expiryDate = new Date(
@@ -125,13 +127,12 @@ export const forgotPassword =async (values, dispatch, history) => {
           );
           localStorage.setItem('expiryDate', expiryDate.toISOString());
     } catch (error) {
-        console.log(error)
+        forgotPasswordFailure(error)
 
     }
 }
 
 export const resetPassword =async (values, token,  history) => {
-    let user;
     try {
         const response = await fetch(`http://localhost:8081/auth/reset-password/${token}`, {
             method: 'PUT',
@@ -153,11 +154,10 @@ export const resetPassword =async (values, token,  history) => {
             throw new Error('Password failed, check your network connection');
         }
         const userData = await response.json()
-         user = userData.user
-         console.log(user)
+         resetPasswordSuccess()
+          
           history.push('/login')
     } catch (error) {
-        console.log(error)
-
+       resetPasswordFailure(error)
     }
 }

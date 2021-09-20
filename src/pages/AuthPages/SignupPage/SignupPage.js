@@ -6,6 +6,7 @@ import Logo from '../../../assets/MarvnotesLogo.svg'
 import { loginUser, signUpUser } from '../../../services/auth';
 import { useDispatch } from "react-redux";
 import { Animated } from "react-animated-css";
+import { Link } from 'react-router-dom';
 const SignupPage = () => {
    const dispatch = useDispatch()
     return (
@@ -19,7 +20,7 @@ const SignupPage = () => {
 
                 <h6>We’re glad you want to join MarvNotes.</h6>
                 <p>Create your Account</p>
-            </section>
+       
             <Formik
                 initialValues={{ email: '', password: '', confirmpassword: '', name: '' }}
                 validate={values => {
@@ -74,7 +75,7 @@ const SignupPage = () => {
                         {
                             errors.name ?
                                 <p className="auth-errormessage">
-                                    {errors.name && touched.name && errors.name}
+                                    {errors.name  && errors.name}
                                 </p> : null
                         }
 
@@ -141,9 +142,11 @@ const SignupPage = () => {
                 lineHeight: "21px",
                 color: "#000000"
             }}>
-                Already have an account, <a href="efe">Login?</a>
+                Already have an account, <Link to="/Login">Login?</Link>
             </p>
+            </section>
         </div>
+
         </Animated>
     )
 }

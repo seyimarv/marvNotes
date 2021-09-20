@@ -1,9 +1,21 @@
+@import '../../assets/scss/mixins';
+
 .auth-page {
     display: flex;
-    justify-content: center;
-    align-items: center;
+
     margin: 40px 0px;
     flex-direction: column;
+
+    form {
+        display: flex;
+        flex-direction: column;
+         width: 50%;
+         margin: 0 auto;
+
+         @include respond(phone) {
+             width: 90%;
+         }
+    }
 
     .auth-button {
         width: 100% !important;
@@ -16,6 +28,8 @@
     }
     
     .auth-logo {
+        display: flex;
+        justify-content: center;
 
         h6 {
             font-style: normal;
@@ -36,19 +50,38 @@
             font-weight: 300;
             font-size: 14px;
             line-height: 21px;
-            /* identical to box height */
-
-
             color: #000000;
+
         }
+        .email_sent {
+
+            text-align: center;
+            .MuiSvgIcon-root {
+                 font-size: 50px;
+                 margin: 20px 0px 40px 0px;
+                 color: rgb(28, 11, 158);
+            }
+             h6 {
+                 font-weight: 600;
+                 letter-spacing: 1px;
+                 font-size: 20px;
+             }
+             p {
+                 font-weight: 300;
+             }
+        }
+        .auth-errormessage {
+            color: red;
+            font-size: 12px;
+            line-height: 5px;
+            
+            margin: 10px 0px; 
+
+        }
+       
     }
 
-    .auth-errormessage {
-        color: red;
-        font-size: 12px;
-        line-height: 5px;
-        margin: 5px;
-    }
+   
 }
 
 

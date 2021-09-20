@@ -24,7 +24,7 @@ const Landingpageheader = () => {
                     <ul>
                         <li className="main-header_logo">
                            
-                            <h6>MarvNotes</h6>
+                            <h6>MarvieNotes</h6>
                         </li>
                         <li className="main_header_item">
                             <a>Home</a>

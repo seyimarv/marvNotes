@@ -15,9 +15,10 @@ import { logoutCheck } from '../../utils/Alerts.responses';
 import StarsIcon from '@material-ui/icons/Stars';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 
-const Sidebar = ({path, history}) => {
+const Sidebar = ({path, history, SidebarMobile}) => {
     const currentUser = useSelector((state) => state.user.currentUser)
     const dispatch = useDispatch()
+
     return (
         <div className="sidebar">
             {/* <h6 className='sidebar_user-name'>{currentUser.userName}</h6> */}

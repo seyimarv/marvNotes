@@ -176,6 +176,10 @@ body {
             padding: 5px 0px;
             opacity: 0.6;
             font-size: 14px;
+
+            @include respond(phone) {
+                -webkit-line-clamp: 4;
+            }
         }
 
         .note_card_date {

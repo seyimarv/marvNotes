@@ -8,7 +8,7 @@ import ReadingNotes from '../../assets/ReadingNotes.svg'
 import Quote from '../../assets/icons8_Quote_96px 1.svg'
 import { Animated } from "react-animated-css";
 import ScrollAnimation from 'react-animate-on-scroll';
-
+import { Link } from 'react-router-dom';
 
 const LandingPage = () => {
 
@@ -34,21 +34,24 @@ const LandingPage = () => {
                         <Col className="landing_firstsection_right col-6" xs={12} lg={6} md={6} sm={12}>
                             <Animated animationIn="fadeInLeft" >
                                 <h4>
-                                    Writing beautiful notes is a priority
+                                    Writing beautiful notes is a priority.
                                 </h4>
                                 <p>
-                                    With a marvienotes account, you can write and save your beautiful notes
+                                    With a Marvienotes account, you can write and save your notes forever.
                                 </p>
                             </Animated>
                             <Animated animationIn="fadeIn" >
                                 <div className="button_container">
-                                    <Button style={{
+                                   <Link to='/Signup'>
+                                   <Button style={{
                                         background: '#EF7B45',
                                         maxWidth: '200px',
                                         border: '1px solid #EF7B45'
                                     }}>
                                         Get started
                                     </Button>
+
+                                   </Link> 
                                 </div>
                             </Animated>
                         </Col>
@@ -82,7 +85,7 @@ const LandingPage = () => {
                                             <p style={{
                                                 color: '#610000'
                                             }}>
-                                                Sign up for a marvienotes account
+                                                Sign up for a Marvienotes account.
                                             </p>
                                         </div>
                                         <div className="landingsecondsection_boxes" style={{
@@ -109,7 +112,7 @@ const LandingPage = () => {
                                             <p style={{
                                                 color: '#7C3800'
                                             }}>
-                                                Start writing and save your notes
+                                                Start writing and save your notes.
                                             </p>
                                         </div>
                                         <div className="landingsecondsection_boxes" style={{
@@ -121,7 +124,7 @@ const LandingPage = () => {
                                             <p style={{
                                                 color: '#003F30'
                                             }}>
-                                                Read your notes, edit and delete if you want
+                                                Read your notes, edit and delete if you want.
                                             </p>
                                         </div>
                                     </Col>
@@ -131,11 +134,11 @@ const LandingPage = () => {
                             <Col className="landing_secondsection_right order-first order-lg-last" lg={4} xs={12} md={4}>
 
                                 <h4>
-                                    How it works
+                                    How It Works
                                 </h4>
 
                                 <p>
-                                    With the right mindset you can easily grow your savings, simply follow our 5 easy steps and your money will work as hard as you do.
+                                   Sign up easily for your MarviesNote account, and start writing right away. No charges! No hidden fees!
                                 </p>
 
                             </Col>
@@ -150,12 +153,10 @@ const LandingPage = () => {
                     <Col className="landing_thirdsection_textcol landing_thirdsection_right" xs={12} lg={6} md={6}>
                         <ScrollAnimation animateIn="fadeInUp" className="landing_thirdsection_textcol landing_thirdsection_right">
                             <h6>
-                                Always make sure you
-                                spend on priorities
+                                Do You Know ...
                             </h6>
                             <p>
-                                Spending can be trivial when you have money in your pocket.
-                                Use our budgeting tool to plan your expenses so that you don’t spend on trivialities.
+                                Thousands of users across the world would be happy to read your words.
                             </p>
                         </ScrollAnimation>
                     </Col>
@@ -174,12 +175,12 @@ const LandingPage = () => {
                     </Col>
                     <Col className="landing_thirdsection_textcol landing_thirdsection_left" xs={12} lg={6} md={6}>
                         <ScrollAnimation animateIn="fadeInUp" className="landing_thirdsection_textcol landing_thirdsection_left" >
-                            <h6>
-                                Set your goals and save
-                                toward it automatically
+                            <h6 style={{ fontStyle: "italic"}}>
+                               "Writing is the best way to talk
+                               without being interrupted." - Jules Renard
                             </h6>
                             <p>
-                                You may not see it today but we want you to look back in a few years and be awed by how every little of your savings added up and brought you where you wanted to be. Use our youth friendly accounts to track your savings as it grow bit-by-bit.
+                                Write and share your thoughts with everyone today by creating an account with Marvienotes.
                             </p>
                         </ScrollAnimation>
                     </Col>
@@ -189,54 +190,56 @@ const LandingPage = () => {
                 <div className="landing_fourthsection_text">
                     <ScrollAnimation animateIn="fadeIn" >
                         <h6>
-                            The habit of saving is an education
+                            Writing Made Easy For Everyone.
                         </h6>
                         <p>
-                            Be inspired! let our success stories guide you
+                        Whether you want to get organized, keep your personal life on track, or boost workplace productivity, Marvienotes is right for you.
                         </p>
                     </ScrollAnimation>
                 </div>
                 <ScrollAnimation animateIn="fadeIn" >
-                <div className="landing_fourthsection_box">
-                
-                    <div>
-                        <img src={Quote} alt="" />
+                    <div className="landing_fourthsection_box">
+
+                        <div>
+                            <img src={Quote} alt="" />
+                        </div>
+                        <p>
+                            Using MarvieNotes has helped me to write, save and organize my notes easily. Now, I have no fear of losing them.
+                        </p>
+                        <h6>
+                            Oyewo Oluwaseyitan - Student, Obafemi Awolowo University.
+                        </h6>
                     </div>
-                    <p>
-                        Using MarvNotes has really helped me in
-                        achieving my dreams in the most unexpected way.
-                    </p>
-                    <h6>
-                        Oyewo oluwaseyitan, Student, Obafemi awolowo university
-                    </h6>
-                </div>
                 </ScrollAnimation>
             </section>
             <section className="landing_fifthsection">
-            <ScrollAnimation animateIn="fadeIn"  className="landing_fifthsection">
-                <h6>
-                    Start Writing
-                </h6>
-                <p>
-                    Budgeting, saving and earning with one ChipTranz account.
-                    We’d love to help you take control over your money.
-                </p>
-                <Button style={{
-                    background: '#EF7B45',
-                    maxWidth: '200px',
-                    border: '1px solid #EF7B45'
-                }}>
-                    Get started
-                </Button>
+                <ScrollAnimation animateIn="fadeIn" className="landing_fifthsection">
+                    <h6>
+                        Start Writing
+                    </h6>
+                    <p>
+                        Write, Save and Share your thoughts today with Marvienotes account.
+                        We’d love to help you organize your thoughts.
+                    </p>
+                    <Link to='/Signup'>
+                        <Button style={{
+                            background: '#EF7B45',
+                            maxWidth: '200px',
+                            border: '1px solid #EF7B45'
+                        }}>
+                            Get started
+                        </Button>
+
+                    </Link>
                 </ScrollAnimation>
             </section>
-           
+
             <footer>
-          
+
                 <p>Built By Oyewo Oluwaseyitan <span>©</span> 2020 </p>
-                
+
             </footer>
-           
+
 
         </div>
     )

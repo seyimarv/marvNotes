@@ -3,7 +3,7 @@ import { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import { socket } from '../../services/socket'
 import { useSelector } from "react-redux";
-import { createNote, deleteCurrentNote, fetchCurrentNotes, updateNote} from '../../redux/notes/notes.actions'
+import { createNote, deleteCurrentNote, fetchCurrentNotes, updateNote } from '../../redux/notes/notes.actions'
 import { fetchNotes } from '../../services/notes'
 import './All-notes.scss'
 import WithLoading from '../../components/withLoading/withLoading'
@@ -14,6 +14,7 @@ import Writenote from '../../components/WriteNote/Writenote'
 import EditNote from '../../components/WriteNote/EditNote'
 import './All-notes.scss'
 import PhoneFooter from '../../components/phonefooter/phonefooter'
+import { Box, ClickAwayListener } from '@material-ui/core';
 import { Animated } from "react-animated-css";
 
 const AllnoteCon = (props) => {
@@ -26,13 +27,22 @@ const AllnoteCon = (props) => {
   const writeNoteState = useSelector((state) => state.notes.writeNote)
   const editNoteState = useSelector((state) => state.notes.editNote)
   const [SidebarMobile, setSidebarMobile] = useState(false)
+  const [SidebarMobileDisplay, setSidebarMobileDisplay] = useState('')
+
   // var getUpdateNote;
 
- 
+
 
   const toggleSidebar = () => {
     setSidebarMobile(!SidebarMobile)
+    console.log(SidebarMobile)
+    setSidebarMobileDisplay('open')
   }
+  const handleClickAway = () => {
+    setSidebarMobile(false)
+    console.log('clickedddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd')
+  };
+
   console.log(editNoteState)
   const getNotes = async (pathname) => {
     dispatch(fetchCurrentNotes({ isLoading: true, notes: [] }))
@@ -43,47 +53,51 @@ const AllnoteCon = (props) => {
       notes = await fetchNotes(currentUser.token, false)
     }
     setTimeout(() => {
-      if(notes) {
+      if (notes) {
         dispatch(fetchCurrentNotes({ isLoading: false, notes: notes.notes }))
       } else {
-        dispatch(fetchCurrentNotes({ isLoading: false, notes: []}))
+        dispatch(fetchCurrentNotes({ isLoading: false, notes: [] }))
       }
-    
+
     }, 500)
 
   }
 
 
- 
 
 
- 
+
+
 
 
 
   useEffect(() => {
     getNotes(props.location.pathname)
 
-  
+
 
 
   }, [props.location.pathname])
 
   console.log(currentNotes)
 
-  
+
   return (
     <>
       <Container fluid className="all-notes_container" fluid>
-      {
-            SidebarMobile ?
-              <Animated animationIn='fadeInLeft' animationOut='fadeOutLeft' className="sidebar-displaymobile">
-                <Sidebar path={props.location.pathname} history={props.history} SidebarMobile={SidebarMobile} />
-              </Animated> : null
-          }
-        <Row className='no-gutter' onClick={() => {
-          setSidebarMobile(false)
-        }} className={`${SidebarMobile ? 'dull-page' : ''}`}>
+
+        <ClickAwayListener onClickAway={handleClickAway}>
+          <Box sx={{ m: -2 }} className="sidebar_box">
+            <PhoneFooter toggleSidebar={toggleSidebar} SidebarMobile={SidebarMobile} />
+
+            <div className={`sidebar-displaymobile ${SidebarMobile === true ? 'sidebar_open': ''} `}>
+              <Sidebar path={props.location.pathname} history={props.history} handleClickAway={handleClickAway} />
+            </div>
+          </Box>
+        </ClickAwayListener>
+
+
+        <Row className='no-gutter' className={`${SidebarMobile ? 'dull-page' : ''}`}>
           <Col lg={2} className="all-notes_colummn sidebar-display">
             <div className='position-fixed'>
               <Sidebar path={props.location.pathname} history={props.history} />
@@ -113,8 +127,11 @@ const AllnoteCon = (props) => {
           }
 
         </Row>
-       
-        <PhoneFooter toggleSidebar={toggleSidebar} SidebarMobile={SidebarMobile}/>
+
+
+
+
+
       </Container>
 
     </>

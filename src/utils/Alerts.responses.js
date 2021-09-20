@@ -32,6 +32,15 @@ export const logOutSuccess = () => {
     })
 }
 
+export const resetPasswordSuccess = () => {
+    Toast.fire({
+        icon: 'success',
+        title: "<p>" + 'Password reset successful' + "</p>"
+    })
+}
+
+
+
 export const addNoteSuccess  = () => {
     Toast.fire({
         icon: 'success',
@@ -56,6 +65,7 @@ export const toggleLikeSucces = (added) => {
     })
 }
 
+
 //Alerts for error responses
 export const loginFailure = (err) => {
     Toast.fire({
@@ -68,6 +78,21 @@ export const signupFailure = (err) => {
     Toast.fire({
         icon: 'error',
         title:   "<p>" + err + "</p>" 
+    })
+}
+
+export const forgotPasswordFailure = (err) => {
+    Toast.fire({
+        icon: 'error',
+        title: "<p>" + err + "</p>"
+    })
+}
+
+
+export const resetPasswordFailure = (err) => {
+    Toast.fire({
+        icon: 'error',
+        title: "<p>" + err + "</p>"
     })
 }
 
@@ -129,3 +154,4 @@ export const deleteNoteCheck = (deleteNote) => {
         } 
       })
 }
+

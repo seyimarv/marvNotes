@@ -10,9 +10,16 @@
         font-size: 15px;
     }
 
-    @include respond(phone) {
+    .sidebar_close {
         padding: 20px 0px;
         margin: 0px 0px;
+        display: none;
+        
+        transition: 0.3s;
+    }
+    .sidebar_open {
+          width: 100%;
+          display: flex !important;
     }
 
     h6 {

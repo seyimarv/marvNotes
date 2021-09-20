@@ -14,6 +14,7 @@ body {
     @include respond(phone) {
         display: none;
     }
+
     @include respond(tab-port) {
         display: none;
     }
@@ -21,16 +22,65 @@ body {
 
 .dull-page {
     opacity: 0.8;
- 
+
+}
+.sidebar_box {
+    padding: 0px !important;
+    margin: 0px !important;
+}
+.sidebar-displaymobile {
+    width: 15rem;
+    height: 100vh;
+    position: absolute;
+    left: 0px;
+    z-index: 10;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease-out;
 }
 
-.sidebar-displaymobile {
-    position: absolute;
-    z-index: 5;
+.sidebar_open  {
+     transform: translateX(0%);
+  }
+
+  @keyframes slideout {
+    from {
+       
+        transform: translateX(-100%);
+    }
+    to {
+        transform: translateX(0%);
+    }
+  }
+
+  .sidebar_close {
+    animation-duration: 0.3s;
+    animation-name: slidein;
+    width: 15rem;
     height: 100vh;
-    width: 70%;
-    margin: 0px;
+    position: absolute;
     left: 0px;
+    z-index: 10;
+
+  }
+
+     
+  @keyframes slidein {
+    from {
+       
+        transform: translateX(0%);
+    }
+    to {
+        transform: translateX(-100%);
+    }
+  }
+
+  
+
+
+
+.sidebar_close {
+    transform: translateX(0);
+    transition: transform 0.3s ease-out;
 }
 
 .all-notes_container {
@@ -45,21 +95,22 @@ body {
             display: none;
         }
     }
+
     @include respond(phone) {
         background-color: white;
         overflow-y: scroll;
         padding-bottom: 0px;
 
     }
-     
+
     @include respond(tab-port) {
         background-color: white;
     }
+
     .all-notes_colummn {
         margin: 0px !important;
-        // padding: 0px !important;
-        padding-right:0 !important;
-        padding-left:0 !important;
+        padding-right: 0 !important;
+        padding-left: 0 !important;
         width: 100%;
     }
 }
