@@ -42,41 +42,6 @@ body {
      transform: translateX(0%);
   }
 
-  @keyframes slideout {
-    from {
-       
-        transform: translateX(-100%);
-    }
-    to {
-        transform: translateX(0%);
-    }
-  }
-
-  .sidebar_close {
-    animation-duration: 0.3s;
-    animation-name: slidein;
-    width: 15rem;
-    height: 100vh;
-    position: absolute;
-    left: 0px;
-    z-index: 10;
-
-  }
-
-     
-  @keyframes slidein {
-    from {
-       
-        transform: translateX(0%);
-    }
-    to {
-        transform: translateX(-100%);
-    }
-  }
-
-  
-
-
 
 .sidebar_close {
     transform: translateX(0);

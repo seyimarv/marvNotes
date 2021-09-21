@@ -13,6 +13,7 @@ import AllnotesCon from './pages/All-notes/AllnotesContainer';
 import ProtectedRoute from './ProtectedRoute';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import Favoritespage from './pages/Favorites/Favoritespage';
+import NotePage from './pages/NotePage/NotePage';
 
 const App = (props) => {
   const dispatch = useDispatch()
@@ -90,6 +91,7 @@ const App = (props) => {
     <ProtectedRoute exact path='/All Notes' component={AllnotesCon} currentUser={currentUser}/>
     <ProtectedRoute exact path='/My Notes' component={AllnotesCon} currentUser={currentUser} />
     <ProtectedRoute exact path='/Favorites' component={Favoritespage} currentUser={currentUser} />
+    <ProtectedRoute exact path='/Note/:id' component={NotePage} currentUser={currentUser} />
     <Route exact path='/forgot-password' render={() =>
           currentUser.isAuth ? (
              <Redirect to='/All Notes' />

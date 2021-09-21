@@ -97,6 +97,27 @@ export const fetchNotes = async (token, privacy) => {
     }
 }
 
+export const fetchNote = async (token, id) => {
+    let note
+    try {
+        const response = await fetch(`http://localhost:8081/note/note/${id}`, {
+            method: 'GET',
+            headers: {
+                Authorization: 'Bearer ' + token,
+            }
+        })
+        if (response.status !== 200 && response.status !== 201) {
+            console.log('Error!');
+            throw new Error('Fetching note failed, check your network connection');
+        }
+        const fetchedNote = await response.json()
+        note = fetchedNote
+        return note
+    } catch(err) {
+         fetchpostFailure()
+    }
+}
+
 export const deleteNote = async (token, id, dispatch) => {
     console.log(token, id)
     try {
