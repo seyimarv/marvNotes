@@ -15,6 +15,7 @@ import { Switch, Route, Redirect } from 'react-router-dom';
 import Favoritespage from './pages/Favorites/Favoritespage';
 import NotePage from './pages/NotePage/NotePage';
 import SearchPage from './pages/Searchpage/SearchPage';
+import Writenote from './components/WriteNote/Writenote';
 
 const App = (props) => {
   const dispatch = useDispatch()
@@ -94,6 +95,7 @@ const App = (props) => {
     <ProtectedRoute exact path='/Favorites' component={Favoritespage} currentUser={currentUser} />
     <ProtectedRoute exact path='/Note/:id' component={NotePage} currentUser={currentUser} />
     <ProtectedRoute exact path='/Search' component={SearchPage} currentUser={currentUser} />
+    <ProtectedRoute exact path='/Write' component={Writenote} currentUser={currentUser} />
     <Route exact path='/forgot-password' render={() =>
           currentUser.isAuth ? (
              <Redirect to='/All Notes' />

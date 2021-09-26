@@ -10,7 +10,7 @@ import { addNote, updateNote } from "../../services/notes";
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 import { writeNote } from "../../redux/notes/notes.actions";
 
-const Writenote = ({ privacy, initialTitle, initialContent, id, editing }) => {
+const Writenote = ({ privacy, initialTitle, initialContent, id }) => {
     const userToken = useSelector((state) => state.user.currentUser.token)
     const dispatch = useDispatch()
     const writeNoteState = useSelector((state => state.notes.writeNote))
