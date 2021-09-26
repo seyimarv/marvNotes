@@ -30,7 +30,7 @@ const Notes = ({ Notes, page, PageIcon, token }) => {
                 <SearchBar />
                 </div>
             </header>
-            <Container fluid className='notes_con'>
+            <Container fluid className='notes_con mt-5 pt-3'>
                 {
                     page === 'Private Notes' ?
                         <Row>
