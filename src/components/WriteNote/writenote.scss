@@ -7,6 +7,7 @@
     position: fixed;
     border-left: 1px solid #b3afaf80;
     background-color: white;
+
     
 
     .write-note_privacy {
@@ -36,7 +37,7 @@
         overflow-y: scroll;
 
         @include respond(phone) {
-            height: 70vh;
+            height: 50vh;
         }
     }
     .write-note_con::-webkit-scrollbar {
@@ -99,13 +100,14 @@
         padding: 5px 30px !important;
     }
     .back-arrow {
-        display: none; 
-        @include respond(phone) {
-            position: absolute;
-            bottom: 30px;
-            left: 20px;
-            opacity: 0.8;
-            display: flex;
+        position: absolute;
+        bottom: 30px;
+        left: 20px;
+        opacity: 0.8;
+        display: flex;
+        @media (min-width: 44.5em) {
+            display: none;
+    
         }
        
     }
