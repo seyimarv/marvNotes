@@ -12,6 +12,7 @@
     "formik": "^2.2.9",
     "node-sass": "^4.14.1",
     "react": "^17.0.2",
+    "react-animate-on-scroll": "^2.1.5",
     "react-animated-css": "^1.2.1",
     "react-bootstrap": "^1.4.3",
     "react-click-away-listener": "^2.0.5",
