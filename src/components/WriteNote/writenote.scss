@@ -34,6 +34,10 @@
     .write-note_con {
         height: 80vh;
         overflow-y: scroll;
+
+        @include respond(phone) {
+            height: 70vh;
+        }
     }
     .write-note_con::-webkit-scrollbar {
         width: 0.5em;
@@ -111,7 +115,6 @@
 @include respond(phone) {
     padding: 0px 0px;
     width: 100%;
-    position: static;
     border-left: none;
 }
     

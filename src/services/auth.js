@@ -77,7 +77,7 @@ export const signUpUser = async (values) => {
         signupFailure(error)
 
     }
-    
+    // return user
      
 }
 

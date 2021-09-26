@@ -70,7 +70,7 @@ const Writenote = ({ privacy, initialTitle, initialContent, id, editing }) => {
                 }) => (
 
                     <form onSubmit={handleSubmit}>
-                        <div className="write-note_privacy">
+                        <div className="write-note_privacy pl-4">
                             <label htmlFor="privacy">Choose who can see this note</label>
                             {
                                 values.privacy ?
@@ -93,7 +93,7 @@ const Writenote = ({ privacy, initialTitle, initialContent, id, editing }) => {
                             }
 
                         </div>
-                        <div className='write-note_con'>
+                        <div className='write-note_con pl-3'>
                             <TextareaAutosize className='write-note_title'
                                 placeholder="Title"
                                 type="text"

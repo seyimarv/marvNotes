@@ -9,9 +9,10 @@ import ClickAway from '../notedropdown/notedropdown';
 import Note from './Note';
 import SearchBar from '../searchBar/searchBar';
 
-const Notes = ({ Notes, page, PageIcon, token }) => {
+const Notes = ({ Notes, page, PageIcon}) => {
     const dispatch = useDispatch()
     const currentUser = useSelector((state) => state.user.currentUser)
+    const isLoading = useSelector((state) => state.notes.currentNotes.isLoading)
     const [openedId, setOpenedId] = useState("")
 
 
@@ -34,8 +35,11 @@ const Notes = ({ Notes, page, PageIcon, token }) => {
                 {
                     page === 'Private Notes' ?
                         <Row>
-
                             {
+                                Notes.includes(note => note.creator._id === currentUser.userId && note.private && !isLoading) ?
+
+                                <>
+                                {
                                 Notes.filter(note => note.creator._id === currentUser.userId && note.private === true).map((note) => {
                                     return (
                                         <Note openedId={openedId} setOpenedId={setOpenedId} note={note} currentUser={currentUser} dispatch={dispatch} largeSize="6" />
@@ -43,6 +47,13 @@ const Notes = ({ Notes, page, PageIcon, token }) => {
 
                                 })
                             }
+
+                                </> : <h1 style={{
+                                    fontSize: '18px',
+                                    padding: '20px '
+                                }}>You have not written any private note yet</h1>
+                            }
+                            
                         </Row> : <Row>
 
                             {

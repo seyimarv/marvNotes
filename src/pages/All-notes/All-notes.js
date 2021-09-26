@@ -5,11 +5,10 @@ import { useDispatch } from 'react-redux'
 import{ socket} from '../../services/socket'
 import Notes from '../../components/Notes/Notes'
 import { useSelector } from "react-redux";
-import Sidebar from '../../components/Sidebar/Sidebar'
-import Writenote from '../../components/WriteNote/Writenote'
+
 import LibraryBooksIcon from '@material-ui/icons/LibraryBooks';
 import './All-notes.scss'
-import PhoneFooter from '../../components/phonefooter/phonefooter'
+
 import { createNote, deleteCurrentNote, fetchCurrentNotes, updateNote} from '../../redux/notes/notes.actions'
 
 
