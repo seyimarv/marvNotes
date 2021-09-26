@@ -7,8 +7,13 @@
     .favorites_con {
         padding-top: 10px;
         padding-bottom: 70px;
+        padding: 0px 20px;
         height: 90vh;
         overflow-y: scroll;
+
+        h1 {
+            font-size: 20px;
+        }
     }
     .favorites_con::-webkit-scrollbar {
         width: 0.4em;
@@ -120,6 +125,7 @@
         display: flex;
         width: 95%;
         justify-content: space-between;
+        cursor: pointer;
         
         .each_favorite-footer-timer-icon {
             font-size: 12px !important;

@@ -10,6 +10,8 @@ const Favorites = () => {
     const favorites = useSelector((state) => state.notes.Favorites.notes)
     return (
 
+
+
         <div className='favorites'>
             <header className='sticky-top'>
                 <StarsIcon style={{
@@ -18,8 +20,9 @@ const Favorites = () => {
                 }} className='favorites_header-icon' />
                 <span className="favorites_header_title">Favorites</span>
             </header>
-       <Container fluid className='favorites_con'>
-            <Row>
+       <Container fluid className='favorites_con p-0'>
+         {
+             favorites.length ?  <Row className='mx-3'>
                 {
                     favorites.map(note => {
                         return (
@@ -29,7 +32,9 @@ const Favorites = () => {
                         )
                     })
                 }
-            </Row>
+            </Row> : <h1>You have not added any note to your favorites</h1>
+         }
+           
         </Container>
         </div>
     )

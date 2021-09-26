@@ -29,7 +29,7 @@ const NotePage = (props) => {
     }, [])
 
 
-    console.log(note)
+    
 
     return (
         <Container fluid className="note_page_con">

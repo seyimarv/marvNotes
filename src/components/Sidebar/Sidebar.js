@@ -30,10 +30,10 @@ const Sidebar = ({path, history, SidebarMobile}) => {
            <div style={{
                paddingRight: '40px'
            }}>
-            <Sidebaritem Icon={LibraryBooksIcon} active={path} text="All Notes"/>
-            <Sidebaritem Icon={MenuBookIcon} icon='' active={path} text="My Notes" />
+            <Sidebaritem Icon={LibraryBooksIcon} active={path} text="Public Notes"/>
+            <Sidebaritem Icon={MenuBookIcon} icon='' active={path} text="Private Notes" />
             <Sidebaritem Icon={StarsIcon}   active={path} text="Favorites"  />
-            <Sidebaritem Icon={AccountCircleIcon}   active={path} text="Profile"  />
+            {/* <Sidebaritem Icon={AccountCircleIcon}   active={path} text="Profile"  /> */}
             </div>
           
             <div className='sidebar_footer'>

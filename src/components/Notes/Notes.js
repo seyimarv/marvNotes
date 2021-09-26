@@ -7,6 +7,7 @@ import { deleteNote, toggleLike } from '../../services/notes'
 import './Notes.scss'
 import ClickAway from '../notedropdown/notedropdown';
 import Note from './Note';
+import SearchBar from '../searchBar/searchBar';
 
 const Notes = ({ Notes, page, PageIcon, token }) => {
     const dispatch = useDispatch()
@@ -17,20 +18,27 @@ const Notes = ({ Notes, page, PageIcon, token }) => {
     return (
         <div className='notes'>
             <header className='sticky-top'>
-                <PageIcon style={{
+            <div className='header_title'>
+            <PageIcon style={{
                     fontSize: '23px'
                 }} className='header-icon' />
                 <span className="header_title">{page}</span>
+            </div>
+               
+
+                <div className="searchbar_container mx-5">
+                <SearchBar />
+                </div>
             </header>
             <Container fluid className='notes_con'>
                 {
-                    page === 'My Notes' ?
+                    page === 'Private Notes' ?
                         <Row>
 
                             {
                                 Notes.filter(note => note.creator._id === currentUser.userId && note.private === true).map((note) => {
                                     return (
-                                        <Note openedId={openedId} setOpenedId={setOpenedId} note={note} currentUser={currentUser} dispatch={dispatch} />
+                                        <Note openedId={openedId} setOpenedId={setOpenedId} note={note} currentUser={currentUser} dispatch={dispatch} largeSize="6" />
                                     )
 
                                 })
@@ -38,9 +46,9 @@ const Notes = ({ Notes, page, PageIcon, token }) => {
                         </Row> : <Row>
 
                             {
-                                Notes.map((note) => {
+                                Notes.filter(note => note.private === false ).map((note) => {
                                     return (
-                                        <Note openedId={openedId} setOpenedId={setOpenedId} note={note} currentUser={currentUser} dispatch={dispatch} />
+                                        <Note openedId={openedId} setOpenedId={setOpenedId} note={note} currentUser={currentUser} dispatch={dispatch}  largeSize="6"/>
                                     )
 
                                 })

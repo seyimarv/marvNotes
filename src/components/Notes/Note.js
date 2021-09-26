@@ -8,24 +8,25 @@ import ClickAway from '../notedropdown/notedropdown';
 import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
 import VisibilityIcon from '@material-ui/icons/Visibility';
 import { Link } from 'react-router-dom';
+import './note.scss'
 
 
 
-const Note = ({ note, currentUser, openedId, setOpenedId }) => {
+const Note = ({ note, currentUser, openedId, setOpenedId, largeSize }) => {
 
     const [open, setOpen] = React.useState(false);
 
     const handleClick = (id) => {
         setOpen((prev) => !prev);
         setOpenedId(id)
-        console.log(openedId)
     };
 
     const handleClickAway = () => {
         setOpen(false);
     };
     return (
-        <Col xs={6} className="note_card_column" key={note._id}>
+        <Col lg={largeSize} xs={6}
+        className="note_card_column" key={note._id}>
             <div className="note_card">
                 <span className='note_card_author mt-3' onClick={handleClick}>{note.creator.name}</span>
                 <span className='note_card_title'>

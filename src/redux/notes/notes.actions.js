@@ -44,4 +44,9 @@ export const removeFromFavorites = (favorites) => ({
     payload: favorites
 })
 
+export const filterSearchResults = (searchQuery) => ({
+    type: noteActionTyoes.FILTER_SEARCH_RESULTS,
+    payload: searchQuery
+})
+
 

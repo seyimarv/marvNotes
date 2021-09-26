@@ -15,7 +15,7 @@ const Writenote = ({ privacy, initialTitle, initialContent, id, editing }) => {
     const dispatch = useDispatch()
     const writeNoteState = useSelector((state => state.notes.writeNote))
     const editNoteState = useSelector((state => state.notes.editNote))
-     console.log(privacy)
+  
     return (
         <div className={`write-note ${writeNoteState || editNoteState.editingNote? 'displayWritenoteMobile' : ''} `}>
 
@@ -23,10 +23,7 @@ const Writenote = ({ privacy, initialTitle, initialContent, id, editing }) => {
                 initialValues={{ title: initialTitle, content: initialContent , privacy: privacy }}
                 validate={values => {
                     const errors = {};
-                    if (!values.title) {
-                        console.log('')
 
-                    }
 
                     return errors;
                 }}
@@ -39,7 +36,7 @@ const Writenote = ({ privacy, initialTitle, initialContent, id, editing }) => {
                         if (!values.content) {
                             values.content = ""
                         }
-                        console.log(values)
+                    
                         await updateNote(values, userToken, id, dispatch)
                         setSubmitting(false);
                         
@@ -52,7 +49,7 @@ const Writenote = ({ privacy, initialTitle, initialContent, id, editing }) => {
                         if (!values.content) {
                             values.content = ""
                         }
-                        console.log(values)
+                      
                         await addNote(values, userToken, dispatch)
                         setSubmitting(false);
 

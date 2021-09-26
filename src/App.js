@@ -14,6 +14,7 @@ import ProtectedRoute from './ProtectedRoute';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import Favoritespage from './pages/Favorites/Favoritespage';
 import NotePage from './pages/NotePage/NotePage';
+import SearchPage from './pages/Searchpage/SearchPage';
 
 const App = (props) => {
   const dispatch = useDispatch()
@@ -29,7 +30,7 @@ const App = (props) => {
     }, milliseconds)
   }
 
-  console.log(props)
+
   useEffect(() => {
    let fetchUser = true
    let fetchedUser
@@ -68,7 +69,7 @@ const App = (props) => {
        exact path = '/'
        render={() =>
           currentUser.isAuth ? (
-             <Redirect from='/' to='/All Notes' />
+             <Redirect from='/' to='/Public Notes' />
           ) : (
             <LandingPage />
           )
@@ -76,22 +77,23 @@ const App = (props) => {
      />
          <Route exact path ='/Signup' render={() =>
           currentUser.isAuth ? (
-             <Redirect to='/All Notes' />
+             <Redirect to='/Public Notes' />
           ) : (
              <SignupPage />
           )
         } />
          <Route exact path ='/Login'  render={() =>
           currentUser.isAuth ? (
-             <Redirect to='/All Notes' />
+             <Redirect to='/Public Notes' />
           ) : (
              <LoginPage/>
           )
         } />
-    <ProtectedRoute exact path='/All Notes' component={AllnotesCon} currentUser={currentUser}/>
-    <ProtectedRoute exact path='/My Notes' component={AllnotesCon} currentUser={currentUser} />
+    <ProtectedRoute exact path='/Public Notes' component={AllnotesCon} currentUser={currentUser}/>
+    <ProtectedRoute exact path='/Private Notes' component={AllnotesCon} currentUser={currentUser} />
     <ProtectedRoute exact path='/Favorites' component={Favoritespage} currentUser={currentUser} />
     <ProtectedRoute exact path='/Note/:id' component={NotePage} currentUser={currentUser} />
+    <ProtectedRoute exact path='/Search' component={SearchPage} currentUser={currentUser} />
     <Route exact path='/forgot-password' render={() =>
           currentUser.isAuth ? (
              <Redirect to='/All Notes' />
@@ -101,7 +103,7 @@ const App = (props) => {
         }  />
       <Route exact path='/reset/:token' render={(props) =>
           currentUser.isAuth ? (
-             <Redirect to='/All Notes' />
+             <Redirect to='/Public Notes' />
           ) : (
              <ResetPassword {...props} />
           )

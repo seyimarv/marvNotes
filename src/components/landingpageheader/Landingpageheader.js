@@ -14,7 +14,7 @@ const Landingpageheader = () => {
         setMobileNav(!mobileNav)
 
     }
-    console.log(mobileNav)
+ 
 
     return (
         <>

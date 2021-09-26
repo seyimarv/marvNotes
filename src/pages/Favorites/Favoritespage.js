@@ -20,19 +20,11 @@ const Favoritespage = (props) => {
   const currentNotes = useSelector((state) => state.notes.currentNotes.notes)
   const isLoading = useSelector((state) => state.notes.Favorites.isLoading)
 
-  const [SidebarMobile, setSidebarMobile] = useState(false)
  
 
 
 
-  const toggleSidebar = () => {
-    setSidebarMobile(!SidebarMobile)
-    console.log(SidebarMobile)
 
-  }
-  const handleClickAway = () => {
-    setSidebarMobile(false)
-  };
 
   const dispatch = useDispatch()
 
@@ -63,11 +55,11 @@ const Favoritespage = (props) => {
       <Container className="favorites_container" fluid>
         <Row>
           <Col lg={2} className="favorites_column sidebar-display">
-            <div className='position-fixed'>
+           
               <Sidebar path={props.location.pathname} history={props.history} />
-            </div>
+         
           </Col>
-          <Col lg={10} className="favorites_column">
+          <Col lg={10} className="favorites_column p-0">
             <WithLoading Component={Favorites} favorites={favorites} isLoading={isLoading} pathname={props.location.pathname} page="nonew"/>
           </Col>
         </Row>

@@ -22,10 +22,7 @@ const Note = ({ note }) => {
             <h6>
                 {note.title}
             </h6>
-            
                 {note.content}
-           
-
         </div>
     )
 }

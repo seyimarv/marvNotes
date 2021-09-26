@@ -8,14 +8,13 @@ import PhoneFooter from '../phonefooter/phonefooter';
 import '../../pages/All-notes/All-notes.scss'
 
 
-const WithLoading = ({ isLoading, Component, pathname, favorites, note, history, page }) => {
-  console.log(pathname)
-  console.log(isLoading)
+const WithLoading = ({ isLoading, Component, pathname, favorites, note, history, page, searchQuery, searchNoteResults, setSearchNotesResults }) => {
+
   const [SidebarMobile, setSidebarMobile] = useState(false)
 
   const toggleSidebar = () => {
     setSidebarMobile(!SidebarMobile)
-    console.log(SidebarMobile)
+    
 
   }
   const handleClickAway = () => {
@@ -39,7 +38,11 @@ const WithLoading = ({ isLoading, Component, pathname, favorites, note, history,
           <div className="with-loading">
             <CircularProgress value="M" />
           </div> :
-          <Component pathname={pathname} favorites={favorites} note={note} />
+          <Component pathname={pathname}
+            setSearchNotesResults={setSearchNotesResults}
+                         searchNoteResults={searchNoteResults}
+           favorites={favorites} note={note}
+            history={history} searchQuery={searchQuery}/>
       }
 
     </>

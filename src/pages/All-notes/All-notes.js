@@ -32,7 +32,6 @@ const Allnotes = ({pathname}) => {
         if (updateNoteIndex > -1) {
           updatedNotes[updateNoteIndex]= note
         }
-        console.log(updatedNotes)
         return updatedNotes
         
       }
@@ -49,26 +48,22 @@ const Allnotes = ({pathname}) => {
               dispatch(updateNote(updatedNotes))
             }
             else if (data.action === 'like') {
-                // const favoriteNote = toggleFavoriteNotes(data.note, currentUser.userId)
-                // console.log(favoriteNote)
                 const updatedNotes =  getUpdateNote(data.note)
                 dispatch(updateNote(updatedNotes))
             }
           }).off('notes', data => {
             if (data.action === 'create') {
-              console.log(data.note)
+          
               getCreateNote(data.note)
             } else if (data.action === 'delete') {
               dispatch(deleteCurrentNote(data.note._id))
             } else if (data.action === 'like') {
-            //    const favoriteNote = toggleFavoriteNotes(data.note, currentUser.userId)
-            //    console.log("yessssssss")
                const updatedNotes =  getUpdateNote(data.note)
                dispatch(updateNote(updatedNotes))
             }
           })
     })
-    console.log(pathname)
+
    
  
    

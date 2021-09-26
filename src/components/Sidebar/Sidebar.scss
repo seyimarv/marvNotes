@@ -4,7 +4,9 @@
     padding: 0px 0px;
     height: 100vh;
     background-image: linear-gradient(to bottom, #062264, #052365, #052465, #042466, #042566, #042668, #042869, #04296b, #042b6f, #042e73, #043078, #04337c);
-     width: 100%;
+    width: 100%;
+    // position: absolute;
+    // left: 0px;
     .sidebar_user-name {
         margin: 0px 10px;
         font-size: 15px;
@@ -14,7 +16,6 @@
         padding: 20px 0px;
         margin: 0px 0px;
         display: none;
-        
         transition: 0.3s;
     }
     .sidebar_open {
@@ -115,7 +116,7 @@
     .sidebar-item {
 
         margin-bottom: 10px;
-        padding-right: 50px;
+        padding-right: 0px;
 
         div {
             padding: 0px 20px;

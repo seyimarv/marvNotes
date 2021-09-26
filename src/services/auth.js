@@ -1,12 +1,11 @@
 
-import { writeNote } from "../redux/notes/notes.actions";
 import { setCurrentUser, LOGOUT } from "../redux/user/user.actions";
-import { forgotPasswordFailure, loginFailure, loginSuccess, logOutSuccess, resetPasswordFailure, resetPasswordSuccess, signupFailure, signUpSuccess } from "../utils/Alerts.responses";
+import { forgotPasswordFailure, loginFailure, loginSuccess,  resetPasswordFailure, resetPasswordSuccess, signupFailure, signUpSuccess } from "../utils/Alerts.responses";
 
 export const loginUser = async (values, dispatch, path) => {
     let user;
     try {
-        const response = await fetch('http://localhost:8081/auth/login', {
+        const response = await fetch('https://marvnotesbackend.herokuapp.com/auth/login', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -31,7 +30,7 @@ export const loginUser = async (values, dispatch, path) => {
          if(path) {
             loginSuccess()
         }
-         const remainingMilliseconds = 60 * 60 * 1000;
+         const remainingMilliseconds = 60 * 60 * 240000;
          const expiryDate = new Date(
             new Date().getTime() + remainingMilliseconds
           );
@@ -51,9 +50,9 @@ export const loginUser = async (values, dispatch, path) => {
 
 
 export const signUpUser = async (values) => {
-    let user
+    
     try {
-        const response = await fetch('http://localhost:8081/auth/signup', {
+        const response = await fetch('https://marvnotesbackend.herokuapp.com/auth/signup', {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json'
@@ -64,23 +63,21 @@ export const signUpUser = async (values) => {
                 name: values.name,
             })
         })
-        console.log(response)
+       
         if (response.status === 422) {
             throw new Error(
                 "Validation failed. Make sure the email address isn't used yet!"
             );
         }
         if (response.status !== 200 && response.status !== 201) {
-            console.log('Error!');
             throw new Error('Creating a user failed!');
         }
-        const userData = await response.json()
         signUpSuccess()
     } catch (error) {
         signupFailure(error)
 
     }
-    // return user
+    
      
 }
 
@@ -92,14 +89,12 @@ export const logout = (dispatch, history) => {
     if(history) {
         history.push('/')
     }
-    logOutSuccess()
-    
 }
  
-export const forgotPassword =async (values, dispatch, setEmailSent) => {
+export const forgotPassword =async (values,  setEmailSent) => {
     let user;
     try {
-        const response = await fetch('http://localhost:8081/auth/forgot-password', {
+        const response = await fetch('https://marvnotesbackend.herokuapp.com/auth/forgot-password', {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json'
@@ -134,7 +129,7 @@ export const forgotPassword =async (values, dispatch, setEmailSent) => {
 
 export const resetPassword =async (values, token,  history) => {
     try {
-        const response = await fetch(`http://localhost:8081/auth/reset-password/${token}`, {
+        const response = await fetch(`https://marvnotesbackend.herokuapp.com/auth/reset-password/${token}`, {
             method: 'PUT',
             headers: {
                  Authorization: 'Bearer ' + token,

@@ -17,8 +17,6 @@ import { Box, ClickAwayListener } from '@material-ui/core';
 
 
 const AllnoteCon = (props) => {
-  console.log(props.location.pathname)
-  console.log(props)
   const dispatch = useDispatch()
   const currentUser = useSelector((state) => state.user.currentUser)
   const currentNotes = useSelector((state) => state.notes.currentNotes.notes)
@@ -30,22 +28,14 @@ const AllnoteCon = (props) => {
 
 
 
-  const toggleSidebar = () => {
-    setSidebarMobile(!SidebarMobile)
-    console.log(SidebarMobile)
-
-  }
-  const handleClickAway = () => {
-    setSidebarMobile(false)
-  };
 
 
   const getNotes = async (pathname) => {
     dispatch(fetchCurrentNotes({ isLoading: true, notes: [] }))
     let notes;
-    if (pathname == '/My Notes') {
+    if (pathname == '/Private Notes') {
       notes = await fetchNotes(currentUser.token, true)
-    } else if (pathname == '/All Notes') {
+    } else if (pathname == '/Public Notes') {
       notes = await fetchNotes(currentUser.token, false)
     }
     setTimeout(() => {
@@ -72,23 +62,23 @@ const AllnoteCon = (props) => {
 
   }, [props.location.pathname])
 
-  console.log(currentNotes)
 
 
   return (
     <>
-      <Container fluid className="all-notes_container" fluid>
-
-  
-
-
-        <Row className='no-gutter' className={`${SidebarMobile ? 'dull-page' : ''}`}>
+      <Container fluid className="all-notes_container p-0" fluid>
+        <Row  className={`no-gutters ${SidebarMobile ? 'dull-page' : ''}`}>
           <Col lg={2} className="all-notes_colummn sidebar-display">
-            <div className='position-fixed'>
+            <div className=''>
               <Sidebar path={props.location.pathname} history={props.history} />
             </div>
           </Col>
           <Col lg={6} className={`all-notes_column ${writeNoteState || editNoteState.editingNote === true ? 'nodisplayMobile' : ''}`}>
+          {/* <header style={{
+            border: '1px solid red',
+          }}>
+            me
+          </header> */}
             <WithLoading Component={Allnotes} currentNotes={currentNotes} isLoading={isLoading} pathname={props.location.pathname}  history={props.history} />
           </Col>
           {

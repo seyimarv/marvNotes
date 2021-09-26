@@ -19,6 +19,11 @@ const INITIAL_STATE = {
     Favorites: {
         notes: [],
         isLoading: true
+    }, 
+    SearchedNotes: {
+        notesWithTitle: [],
+        notesWithContent: [],
+        isLoading: true
     }
 }
 
@@ -97,6 +102,17 @@ const notesReducer = (state = INITIAL_STATE, action) => {
                 ...state,
                 Favorites: {
                     notes: action.payload.notes.filter(note => note.likes.includes(action.payload.currentUser.userId)),
+                    isLoading: false
+                }
+                    
+            }
+        }
+        case (noteActionTyoes.FILTER_SEARCH_RESULTS): {
+            return {
+                ...state,
+                 SearchedNotes: {
+                    notesWithTitle: action.payload.notes.filter(note => note.title.toLowerCase().includes(action.payload.searchQuery.toLowerCase()) ),
+                    notesWithContent: action.payload.notes.filter(note => note.content.toLowerCase().includes(action.payload.searchQuery.toLowerCase()) ),
                     isLoading: false
                 }
                     

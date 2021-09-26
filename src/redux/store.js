@@ -10,6 +10,6 @@ const enhancedMiddleware = applyMiddleware(logger)
 
 const composedEnhancers = compose(enhancedMiddleware)
 
-export const store = createStore(rootReducer,  composedEnhancers )
+export const store = createStore(rootReducer, composedEnhancers )
 export const persistor = persistStore(store)
 

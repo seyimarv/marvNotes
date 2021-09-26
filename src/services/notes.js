@@ -4,7 +4,7 @@ import { addNoteFailure, fetchpostFailure, addNoteSuccess, updateNoteFailure, to
 
 export const addNote = async (Values, token) => {
    try {
-       const response = await fetch('http://localhost:8081/note/note', {
+       const response = await fetch('https://marvnotesbackend.herokuapp.com/note/note', {
            method: 'POST',
            headers: {
             'Content-Type': 'application/json',
@@ -16,18 +16,16 @@ export const addNote = async (Values, token) => {
                privacy: Values.privacy
            })
        })
-       console.log(response)
+   
        if (response.status === 401) {
         throw new Error(
             "Adding note failed"
         );
     }
     if (response.status !== 200 && response.status !== 201) {
-        console.log('Error!');
+   
         throw new Error('Adding note failed, check your network connection');
     }
-    const noteData = await response.json()
-    console.log(noteData)
     Values.title = ''
     Values.content = ''
     addNoteSuccess()
@@ -38,7 +36,7 @@ export const addNote = async (Values, token) => {
 
 export const updateNote = async (Values, token, id, dispatch) => {
     try {
-        const response = await fetch(`http://localhost:8081/note/note/${id}`, {
+        const response = await fetch(`https://marvnotesbackend.herokuapp.com/note/note/${id}`, {
             method: 'PUT',
             headers: {
              'Content-Type': 'application/json',
@@ -50,18 +48,18 @@ export const updateNote = async (Values, token, id, dispatch) => {
                 privacy: Values.privacy
             })
         })
-        console.log(response)
+    
         if (response.status === 401) {
          throw new Error(
              "Updating note failed"
          );
      }
      if (response.status !== 200 && response.status !== 201) {
-         console.log('Error!');
+     
          throw new Error('Updating note failed, check your network connection');
      }
-     const noteData = await response.json()
-     console.log(noteData)
+   
+  
      Values.title = ''
      Values.content = ''
     
@@ -77,7 +75,7 @@ export const updateNote = async (Values, token, id, dispatch) => {
 export const fetchNotes = async (token, privacy) => {
     let notes
     try {
-        const response = await fetch('http://localhost:8081/note/note', {
+        const response = await fetch('https://marvnotesbackend.herokuapp.com/note/note', {
             method: 'GET',
             headers: {
                 Authorization: 'Bearer ' + token,
@@ -85,12 +83,34 @@ export const fetchNotes = async (token, privacy) => {
             }
         })
         if (response.status !== 200 && response.status !== 201) {
-            console.log('Error!');
+           
             throw new Error('Fetching notes failed, check your network connection');
         }
         const fetchedNotes = await response.json()
         notes = fetchedNotes
-        console.log(notes)
+    
+        return notes
+    } catch(err) {
+         fetchpostFailure()
+    }
+}
+
+export const fetchSearchNotes = async (token) => {
+    let notes
+    try {
+        const response = await fetch('https://marvnotesbackend.herokuapp.com/note/search', {
+            method: 'GET',
+            headers: {
+                Authorization: 'Bearer ' + token,
+            }
+        })
+        if (response.status !== 200 && response.status !== 201) {
+      
+            throw new Error('getting search results failed, check your network connection');
+        }
+        const fetchedNotes = await response.json()
+        notes = fetchedNotes
+   
         return notes
     } catch(err) {
          fetchpostFailure()
@@ -100,14 +120,14 @@ export const fetchNotes = async (token, privacy) => {
 export const fetchNote = async (token, id) => {
     let note
     try {
-        const response = await fetch(`http://localhost:8081/note/note/${id}`, {
+        const response = await fetch(`https://marvnotesbackend.herokuapp.com/note/note/${id}`, {
             method: 'GET',
             headers: {
                 Authorization: 'Bearer ' + token,
             }
         })
         if (response.status !== 200 && response.status !== 201) {
-            console.log('Error!');
+        
             throw new Error('Fetching note failed, check your network connection');
         }
         const fetchedNote = await response.json()
@@ -119,40 +139,39 @@ export const fetchNote = async (token, id) => {
 }
 
 export const deleteNote = async (token, id, dispatch) => {
-    console.log(token, id)
+
     try {
-        const response =  await fetch(`http://localhost:8081/note/note/${id}`, {
+        const response =  await fetch(`https://marvnotesbackend.herokuapp.com/note/note/${id}`, {
             method: 'DELETE',
             headers: {
                 Authorization: 'Bearer ' + token
             }
         })
-        console.log(response)
+      
         if (response.status !== 200 && response.status !== 201) {
-            console.log('Error!');
+        
             throw new Error('deleting notes failed, check your network connection');
         }
         dispatch(deleteCurrentNote(id))
     } catch(err) {
-        console.log(err)
+       
     }
 }
 
 
 export const toggleLike = async (token, id) => {
     try {
-        const response =  await fetch(`http://localhost:8081/note/note/${id}`, {
+        const response =  await fetch(`https://marvnotesbackend.herokuapp.com/note/note/${id}`, {
             method: 'POST',
             headers: {
                 Authorization: 'Bearer ' + token
             }
         })
         if (response.status !== 200 && response.status !== 201) {
-            console.log('Error!');
+        
             throw new Error('deleting notes failed, check your network connection');
         }
        const resp = await response.json()
-        console.log(resp)
         if (resp.message == 'Note unLiked') {
             toggleLikeSucces()
         } else {
@@ -160,21 +179,7 @@ export const toggleLike = async (token, id) => {
         }
     
     } catch(err) {
-        console.log(err)
+ 
     }
 }
 
-// export const toggleFavoriteNotes = (note, likeuserId) => {
-//     const findNote = note.likes.includes(likeuserId)
-//     console.log(note.likes, likeuserId)
-//     if(findNote) {
-//        const likes = note.likes.filter(userId => likeuserId !== userId)
-//        note.likes = likes
-//        console.log(note.likes)
-//     } else {
-//        const likes = [likeuserId, ...note.likes]
-//       note.likes = likes
-//     }
-//     return note;
-
-// }

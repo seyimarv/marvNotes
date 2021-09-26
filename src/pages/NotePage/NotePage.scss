@@ -1,17 +1,47 @@
-.note_page_con {
-    width: 100%;
-    height: 100vh;
-    overflow-x: hidden;
+@import '../../assets/scss/mixins';
 
+.note_page_con {
+    height: 100vh;
+    // overflow-y: scroll;
+    padding-bottom: 0px;
     .note_column {
         margin: 0px !important;
         padding: 0px !important;
     }
+    .note_page::-webkit-scrollbar {
+        width: 0.5em;
+  
+      }
+       
+      .note_page::-webkit-scrollbar-track {
+        box-shadow: transparent;
+      
+      }
+       
+    &:hover {
+    
+       .note_page::-webkit-scrollbar-thumb {
+        border-radius: 5px;
+        background-color: rgba(165, 164, 164, 0.8);
+        // max-height: 8em;
+    
+        @include respond(phone) {
+            display: none;
+        }
+      
+      }
+    }
+
+
 }
 
+
 .note_page {
-    margin-top: 50px;
-   
+    padding: 40px 0px;
+    height: 90vh;
+    overflow-y: scroll;
+    
+  
 
     p {
         font-size: 15px;
