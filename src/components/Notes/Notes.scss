@@ -11,11 +11,13 @@ body {
 
 
 .notes {
+    position: relative;
     width: 100%;
     padding: 0px 0px;
     margin: 0px 0px;
     .notes_con {
         padding-bottom: 70px;
+        margin-top: 100px;
         height: 90vh;
         overflow-y: scroll;
         margin: 0px 8px;
@@ -55,8 +57,8 @@ body {
         -moz-box-shadow: 0px 12px 0px -4px rgba(245,240,240,1);
         box-shadow:         0px 0px 6px 0px #ccc;
         z-index: 1;
-        position: sticky;
-        width: 100%;
+        position: fixed;
+        width: 50%;
         background-color: white;
         
         @include respond(phone) {

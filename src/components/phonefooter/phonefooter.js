@@ -15,7 +15,7 @@ const PhoneFooter = ({ toggleSidebar, SidebarMobile, page }) => {
     const writeNoteState = useSelector((state => state.notes.writeNote))
     const editNoteState = useSelector((state => state.notes.editNote))
     return (
-        <Row className={`phone-footer ${writeNoteState || editNoteState.editingNote === true ? 'd-none' : ''} `}>
+        <div className={`phone-footer ${writeNoteState || editNoteState.editingNote === true ? 'd-none' : ''} `}>
             <div className={`phone-footer-contents ${SidebarMobile ? 'dull-page' : ''}`}>
                 <MenuIcon className='phone-footer-icon' onClick={toggleSidebar} />
                 {
@@ -36,7 +36,7 @@ const PhoneFooter = ({ toggleSidebar, SidebarMobile, page }) => {
                 <SearchIcon className='phone-footer-icon phone-footer-search-icon' />
                 </Link>
             </div>
-        </Row>
+        </div>
     )
 }
 
