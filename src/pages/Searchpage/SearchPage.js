@@ -23,7 +23,8 @@ const SearchPage = (props) => {
     const currentUser = useSelector((state) => state.user.currentUser)
     const dispatch = useDispatch()
    
-    const searchQuery = props.location.search.slice(1)
+    let searchQuery = props.location.search.slice(1)
+    const previouspage = props.location.previouspage
     
 
 
@@ -74,7 +75,7 @@ const SearchPage = (props) => {
                             searchQuery={searchQuery}
                             setSearchNotesResults={setSearchNotesResults}
                             searchNoteResults={searchNoteResults} 
-                            page="nonew"
+                        
                             />
                     </Col>
 

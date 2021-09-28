@@ -27,7 +27,7 @@ const Notes = ({ Notes, page, PageIcon, token }) => {
                
 
                 <div className="searchbar_container mx-5">
-                <SearchBar />
+                <SearchBar previouspage={page}/>
                 </div>
             </header>
             <Container fluid className='notes_con mt-5 pt-3'>

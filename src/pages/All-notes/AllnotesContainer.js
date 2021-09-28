@@ -73,16 +73,12 @@ const AllnoteCon = (props) => {
               <Sidebar path={props.location.pathname} history={props.history} />
             </div>
           </Col>
-          <Col lg={6} className={`all-notes_column ${writeNoteState || editNoteState.editingNote === true ? 'nodisplayMobile' : ''}`}>
-          {/* <header style={{
-            border: '1px solid red',
-          }}>
-            me
-          </header> */}
+          <Col lg={6} className={`all-notes_column `}>
+          
             <WithLoading Component={Allnotes} currentNotes={currentNotes} isLoading={isLoading} pathname={props.location.pathname}  history={props.history} />
           </Col>
           {
-            props.location.pathname == '/My Notes' ?
+            props.location.pathname == '/Private Notes' ?
               <Col lg={4} className='all-notes_column' >
                 {
                   editNoteState.editingNote ? <EditNote note={editNoteState.note} privacy="true" />

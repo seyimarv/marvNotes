@@ -8,8 +8,8 @@ import {persistStore }from "redux-persist";
 
 const enhancedMiddleware = applyMiddleware(logger)
 
-// const composedEnhancers = compose(enhancedMiddleware)
+const composedEnhancers = compose(enhancedMiddleware)
 
-export const store = createStore(rootReducer )
+export const store = createStore(rootReducer, composedEnhancers )
 export const persistor = persistStore(store)
 

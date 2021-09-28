@@ -5,6 +5,8 @@ import { useSelector } from 'react-redux'
 import SearchBar from '../../components/searchBar/searchBar';
 import Note from '../../components/Notes/Note';
 import { Container, Row} from 'react-bootstrap'
+import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
+import { useHistory, useLocation } from 'react-router';
 
 const Search = ({ searchQuery, searchNoteResults, setSearchNotesResults }) => {
     const currentNotes = useSelector((state) => state.notes.currentNotes.notes)
@@ -14,7 +16,15 @@ const Search = ({ searchQuery, searchNoteResults, setSearchNotesResults }) => {
     const isLoading = useSelector((state) => state.notes.SearchedNotes.isLoading)
     const [openedId, setOpenedId] = useState("")
     const dispatch = useDispatch()
-     const [error, setErrorMessage] = useState('')
+    const history = useHistory()
+    const location = useLocation()
+    const previouspage = location.previouspage
+    console.log(previouspage)
+    const goBack = () => {
+       
+        history.push(`/${previouspage}`)
+        console.log(searchQuery)
+    }
     useEffect(() => {
         if(!isLoading) {
             setSearchNotesResults([...SearchedNotesWithContent, ...SearchedNotesWithTitle])
@@ -37,7 +47,8 @@ const Search = ({ searchQuery, searchNoteResults, setSearchNotesResults }) => {
         <>
             <Container fluid className='p-0 my-2 search_page'>
                 <header className="search-page_header">
-                    <SearchBar value={searchQuery}  />
+                    <ArrowBackIosIcon onClick={goBack} className="back_arrow"/>
+                    <SearchBar value={searchQuery}  previouspage={previouspage}/>
                 </header>
                 {
                     searchQuery && searchNoteResults.length ?

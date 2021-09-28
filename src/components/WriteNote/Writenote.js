@@ -8,16 +8,18 @@ import { TextareaAutosize } from "@material-ui/core";
 import { useDispatch, useSelector } from "react-redux";
 import { addNote, updateNote } from "../../services/notes";
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
-import { writeNote } from "../../redux/notes/notes.actions";
+import { editNote } from "../../redux/notes/notes.actions";
+import { useHistory } from 'react-router';
 
-const Writenote = ({ privacy, initialTitle, initialContent, id }) => {
+const Writenote = ({ privacy, initialTitle, initialContent, id , editing }) => {
     const userToken = useSelector((state) => state.user.currentUser.token)
     const dispatch = useDispatch()
     const writeNoteState = useSelector((state => state.notes.writeNote))
     const editNoteState = useSelector((state => state.notes.editNote))
-  
+    const history = useHistory()
+
     return (
-        <div className={`write-note ${writeNoteState || editNoteState.editingNote? 'displayWritenoteMobile' : ''} `}>
+        <div className={`write-note `}>
 
             <Formik
                 initialValues={{ title: initialTitle, content: initialContent , privacy: privacy }}
@@ -28,7 +30,9 @@ const Writenote = ({ privacy, initialTitle, initialContent, id }) => {
                     return errors;
                 }}
                 onSubmit={(values, { setSubmitting }) => {
-                    if(editNoteState.editingNote) {
+                    let notePrivacy
+                    
+                    if(editNoteState.editingNote || editing) {
                         setTimeout(async () => {
                         if (!values.title) {
                             values.title = "No title"
@@ -36,8 +40,22 @@ const Writenote = ({ privacy, initialTitle, initialContent, id }) => {
                         if (!values.content) {
                             values.content = ""
                         }
-                    
-                        await updateNote(values, userToken, id, dispatch)
+                       
+                      const noteData =  await updateNote(values, userToken, id, dispatch)
+                      if(noteData) {
+                          notePrivacy = noteData.note.private
+                      } 
+                      if(editNoteState.editingNote) {
+                        dispatch(editNote({
+         note: null,
+         editNoteState: false
+     }))
+                      }
+                      if (notePrivacy) {
+                        history.push('/Private Notes')
+                       } else {
+                           history.push('/Public Notes')
+                       }
                         setSubmitting(false);
                         
                     }, 100);
@@ -50,8 +68,15 @@ const Writenote = ({ privacy, initialTitle, initialContent, id }) => {
                             values.content = ""
                         }
                       
-                        await addNote(values, userToken, dispatch)
+                       const noteData = await addNote(values, userToken, dispatch)
+                       if (noteData.note.private) {
+                        history.push('/Private Notes')
+                       } else {
+                           history.push('/Public Notes')
+                       }
                         setSubmitting(false);
+                      
+                        
 
                     }, 100);
                     }
@@ -70,7 +95,10 @@ const Writenote = ({ privacy, initialTitle, initialContent, id }) => {
                 }) => (
 
                     <form onSubmit={handleSubmit}>
-                        <div className="write-note_privacy pl-4">
+                        <div className="write-note_privacy">
+                        <ArrowBackIosIcon className='back-arrow' onClick={() => {
+                              history.goBack()
+                        }}/>
                             <label htmlFor="privacy">Choose who can see this note</label>
                             {
                                 values.privacy ?
@@ -130,9 +158,6 @@ const Writenote = ({ privacy, initialTitle, initialContent, id }) => {
                             }
 
                         </div>
-                        <ArrowBackIosIcon className='back-arrow' onClick={() => {
-                            dispatch(writeNote())
-                        }}/>
                         <Button className="write-note_button" type='submit' disabled={isSubmitting}>
                             Post
                         </Button>

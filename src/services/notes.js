@@ -3,6 +3,7 @@ import { addNoteFailure, fetchpostFailure, addNoteSuccess, updateNoteFailure, to
 
 
 export const addNote = async (Values, token) => {
+    let noteData
    try {
        const response = await fetch('https://marvnotesbackend.herokuapp.com/note/note', {
            method: 'POST',
@@ -26,15 +27,19 @@ export const addNote = async (Values, token) => {
    
         throw new Error('Adding note failed, check your network connection');
     }
+    noteData = await response.json()
+    
     Values.title = ''
     Values.content = ''
-    addNoteSuccess()
+     addNoteSuccess()
+     return noteData
    } catch(err) {
         addNoteFailure()
    }
 }
 
 export const updateNote = async (Values, token, id, dispatch) => {
+    let noteData
     try {
         const response = await fetch(`https://marvnotesbackend.herokuapp.com/note/note/${id}`, {
             method: 'PUT',
@@ -58,13 +63,13 @@ export const updateNote = async (Values, token, id, dispatch) => {
      
          throw new Error('Updating note failed, check your network connection');
      }
-   
+     noteData = await response.json()
+    
   
      Values.title = ''
      Values.content = ''
-    
-     dispatch(editNote(null))
      updateNoteSuccess()
+     return noteData
     } catch(err) {
         updateNoteFailure()
     }

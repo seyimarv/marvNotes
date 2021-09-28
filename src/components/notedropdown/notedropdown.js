@@ -6,6 +6,7 @@ import { deleteNote, toggleLike } from '../../services/notes'
 import { useDispatch } from 'react-redux';
 import { editNote } from '../../redux/notes/notes.actions';
 import { deleteNoteCheck } from '../../utils/Alerts.responses';
+import {Link} from 'react-router-dom'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -42,9 +43,17 @@ export default function ClickAway({openedId, note, noteCreatorId, currentUser, h
 
                   {
                   noteCreatorId === currentUser.userId ?
-                    <li onClick={() => {
+                  <>
+                  <Link to={{
+                  pathname: 'Editnote',
+                  state: {
+                      note: note
+                  }
+                }}> <li className="display_edit_mobile"> Edit </li> </Link>
+                <li className="display_edit_desktop" onClick={() => {
                   dispatch(editNote(note))
                 }}> Edit </li>
+                </>
                     : null
                 }
 

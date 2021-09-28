@@ -13,6 +13,18 @@
     box-shadow: 2px 10px 5px 0px rgba(233,227,227,1);
     -webkit-box-shadow: 2px 10px 5px 0px rgba(233,227,227,1);
     -moz-box-shadow: 2px 10px 5px 0px rgba(233,227,227,1);
+
+    .display_edit_desktop {
+        @include respond(phone) {
+            display: none;
+        }
+    }
+    .display_edit_mobile {
+        @media (min-width: 44.5em) {
+            display: none;
+    
+        }
+    }
     
     @include respond(phone) {
         width: 100%;

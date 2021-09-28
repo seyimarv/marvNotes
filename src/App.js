@@ -16,6 +16,7 @@ import Favoritespage from './pages/Favorites/Favoritespage';
 import NotePage from './pages/NotePage/NotePage';
 import SearchPage from './pages/Searchpage/SearchPage';
 import Writenote from './components/WriteNote/Writenote';
+import Editnote from './components/Editnote/Editnote'
 
 const App = (props) => {
   const dispatch = useDispatch()
@@ -96,6 +97,7 @@ const App = (props) => {
     <ProtectedRoute exact path='/Note/:id' component={NotePage} currentUser={currentUser} />
     <ProtectedRoute exact path='/Search' component={SearchPage} currentUser={currentUser} />
     <ProtectedRoute exact path='/Write' component={Writenote} currentUser={currentUser} />
+    <ProtectedRoute exact path='/Editnote' component={Editnote} currentUser={currentUser} />
     <Route exact path='/forgot-password' render={() =>
           currentUser.isAuth ? (
              <Redirect to='/All Notes' />

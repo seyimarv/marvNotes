@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import SearchIcon from '@material-ui/icons//Search';
 import { styled, alpha } from '@material-ui/core/styles';
 import InputBase from '@material-ui/core/InputBase';
@@ -7,14 +7,25 @@ import { useHistory } from 'react-router';
 import './searchBar.scss'
 
 
-const SearchBar = ({value}) => {
+const SearchBar = ({value, deleteValue, previouspage}) => {
+  
     
     const history = useHistory()
+  
+
+
+    // useEffect(() => {
+    //   if(deleteValue) {
+    //     history.push(`/${previouspage}`)
+    //   }
+    // }, [])
+  
   
     const handleChange = (event) => {
       history.push({
         pathname: '/Search',
-        search:  `${event.target.value}`
+        search:  `${event.target.value}`,
+        previouspage: previouspage
       })   
 
     }

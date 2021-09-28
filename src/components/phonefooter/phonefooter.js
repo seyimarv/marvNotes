@@ -9,9 +9,12 @@ import SearchIcon from '@material-ui/icons/Search';
 import { useDispatch, useSelector } from "react-redux";
 import { writeNote } from '../../redux/notes/notes.actions'
 import { Link } from 'react-router-dom';
+import { useLocation } from 'react-router';
 
 const PhoneFooter = ({ toggleSidebar, SidebarMobile, page }) => {
-    const dispatch = useDispatch()
+    const location = useLocation()
+    console.log(location)
+
     const writeNoteState = useSelector((state => state.notes.writeNote))
     const editNoteState = useSelector((state => state.notes.editNote))
     return (
@@ -19,23 +22,24 @@ const PhoneFooter = ({ toggleSidebar, SidebarMobile, page }) => {
         <div className={`phone-footer ${writeNoteState || editNoteState.editingNote === true ? 'd-none' : ''} `}>
             <div className={`phone-footer-contents ${SidebarMobile ? 'dull-page' : ''}`}>
                 <MenuIcon className='phone-footer-icon' onClick={toggleSidebar} />
-                {
-                    page === 'nonew' ? null :
-                        <div  className="phone-footer_button_con">
-                            <Button className="phone-footer_button" onClick={() => {
-                                dispatch(writeNote())
-                            }}>
-                                <span style={{
-                                    padding: '0px 3px'
-                                }}>
-                                    <AddIcon />
-                                </span>
-                                New
-                            </Button>
-                        </div>
-                }
 
-                <Link to='/Search'>
+                <div className="phone-footer_button_con">
+                    <Link to="/Write">
+                        <Button className="phone-footer_button">
+                            <span style={{
+                                padding: '0px 3px'
+                            }}>
+                                <AddIcon />
+                            </span>
+                            New
+                        </Button>
+                    </Link>
+                </div>
+
+                <Link to={{
+                    pathname: 'Search',
+                    previouspage: location.pathname.slice(1)
+                }}>
                     <SearchIcon className='phone-footer-icon phone-footer-search-icon' />
                 </Link>
             </div>

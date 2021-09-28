@@ -8,18 +8,17 @@
     border-left: 1px solid #b3afaf80;
     background-color: white;
 
-    
+    @include respond(phone) {
+        position: relative;
+    }
 
     .write-note_privacy {
-        padding: 0px 10px;
         padding-top: 17px;
         padding-bottom: 9px;
-        width: 105%;
-        margin-left: -9px;
+        width: 100%;
         border-bottom: 1.5px solid #b3afaf80;
-        font-size: 15px;
+        font-size: 13px;
         label {
-           
             color: rgb(140, 140, 140);
         }
         select {
@@ -37,7 +36,7 @@
         overflow-y: scroll;
 
         @include respond(phone) {
-            height: 50vh;
+            height: 80vh;
         }
     }
     .write-note_con::-webkit-scrollbar {
@@ -95,16 +94,15 @@
         position: absolute;
         bottom: 20px;
         right: 20px;
+        margin-top: 20px;
         background:  #424CA0 !important;
         border: #424CA0 !important ;
         padding: 5px 30px !important;
     }
     .back-arrow {
-        position: absolute;
-        bottom: 30px;
-        left: 20px;
+       font-size: 15px;
         opacity: 0.8;
-        display: flex;
+
         @media (min-width: 44.5em) {
             display: none;
     
