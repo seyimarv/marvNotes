@@ -21,8 +21,12 @@ const Search = ({ searchQuery, searchNoteResults, setSearchNotesResults }) => {
     const previouspage = location.previouspage
     console.log(previouspage)
     const goBack = () => {
-       
-        history.push(`/${previouspage}`)
+        if(previouspage) {
+            history.push(`/${previouspage}`)
+        } else {
+            history.goBack()
+        }
+     
         console.log(searchQuery)
     }
     useEffect(() => {
@@ -52,7 +56,7 @@ const Search = ({ searchQuery, searchNoteResults, setSearchNotesResults }) => {
                 </header>
                 {
                     searchQuery && searchNoteResults.length ?
-                        <Row className='search_results mx-2 mt-5'>
+                        <Row className='search_results mx-2 my-5'>
                             {
 
                                 searchNoteResults.map(note => {

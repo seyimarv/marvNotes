@@ -24,7 +24,7 @@ const SearchPage = (props) => {
     const dispatch = useDispatch()
    
     let searchQuery = props.location.search.slice(1)
-    const previouspage = props.location.previouspage
+
     
 
 

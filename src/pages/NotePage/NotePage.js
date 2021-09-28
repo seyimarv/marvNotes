@@ -32,7 +32,7 @@ const NotePage = (props) => {
     
 
     return (
-        <Container fluid className="note_page_con">
+        <Container fluid className="note_page_con p-0">
             <Row>
                 <Col lg={2} className="note_column sidebar-display">
                     <div className='position-fixed'>

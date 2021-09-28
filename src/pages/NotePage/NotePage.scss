@@ -2,12 +2,9 @@
 
 .note_page_con {
     height: 100vh;
-    // overflow-y: scroll;
+    overflow-x: hidden;
     padding-bottom: 0px;
-    .note_column {
-        margin: 0px !important;
-        padding: 0px !important;
-    }
+ 
     .note_page::-webkit-scrollbar {
         width: 0.5em;
   
@@ -37,7 +34,7 @@
 
 
 .note_page {
-    padding: 40px 0px;
+    padding: 40px 20px;
     height: 90vh;
     overflow-y: scroll;
     

@@ -79,7 +79,7 @@ const AllnoteCon = (props) => {
           </Col>
           {
             props.location.pathname == '/Private Notes' ?
-              <Col lg={4} className='all-notes_column' >
+              <Col lg={4} className='all-notes_column notespage_column' >
                 {
                   editNoteState.editingNote ? <EditNote note={editNoteState.note} privacy="true" />
                     :
@@ -87,7 +87,7 @@ const AllnoteCon = (props) => {
                 }
 
               </Col> :
-              <Col lg={4} className='all-notes_column' >
+              <Col lg={4} className='all-notes_column notespage_column' >
                 {
                   editNoteState.editingNote ? <EditNote note={editNoteState.note} privacy="false" />
                     :

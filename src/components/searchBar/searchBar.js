@@ -7,18 +7,13 @@ import { useHistory } from 'react-router';
 import './searchBar.scss'
 
 
-const SearchBar = ({value, deleteValue, previouspage}) => {
+const SearchBar = ({value, previouspage}) => {
   
     
     const history = useHistory()
   
 
 
-    // useEffect(() => {
-    //   if(deleteValue) {
-    //     history.push(`/${previouspage}`)
-    //   }
-    // }, [])
   
   
     const handleChange = (event) => {

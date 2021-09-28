@@ -26,7 +26,7 @@ const WithLoading = ({ isLoading, Component, pathname, favorites, note, history,
     <>
       <ClickAwayListener onClickAway={handleClickAway} >
         <Box sx={{ m: -2 }} className="sidebar_box">
-          <PhoneFooter toggleSidebar={toggleSidebar} SidebarMobile={SidebarMobile} page={page} />
+          <PhoneFooter toggleSidebar={toggleSidebar} SidebarMobile={SidebarMobile} pathname={pathname} />
 
           <div className={`sidebar-displaymobile nodisplay_desktop ${SidebarMobile === true ? 'sidebar_open' : ''} `}>
             <Sidebar path={pathname} history={history} handleClickAway={handleClickAway} />
